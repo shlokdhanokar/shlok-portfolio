@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
+import { SiLeetcode, SiCodechef } from 'react-icons/si';
 
 const roles = [
   'AI/ML Engineer',
@@ -232,13 +233,12 @@ export default function Hero() {
                   rel="noopener noreferrer"
                   className="group glass-card px-4 py-2.5 rounded-xl border border-[#FFA116]/20 hover:border-[#FFA116]/50 hover:bg-[#FFA116]/5 transition-all duration-500 flex items-center gap-2.5 shadow-lg"
                 >
-                  <div className="relative">
-                    <motion.span
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
-                      className="text-lg leading-none"
-                    >🔥</motion.span>
-                  </div>
+                  <motion.div
+                    animate={{ scale: [1, 1.15, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                  >
+                    <SiLeetcode size={20} className="text-[#FFA116]" />
+                  </motion.div>
                   <div>
                     <p className="text-[#FFA116] font-bold text-sm leading-tight">300+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">LeetCode Streak</p>
@@ -252,15 +252,14 @@ export default function Hero() {
                   rel="noopener noreferrer"
                   className="group glass-card px-4 py-2.5 rounded-xl border border-[#56C5C5]/20 hover:border-[#56C5C5]/50 hover:bg-[#56C5C5]/5 transition-all duration-500 flex items-center gap-2.5 shadow-lg"
                 >
-                  <div className="relative">
-                    <motion.span
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1.3 }}
-                      className="text-lg leading-none"
-                    >⚡</motion.span>
-                  </div>
+                  <motion.div
+                    animate={{ scale: [1, 1.15, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 1.4 }}
+                  >
+                    <SiCodechef size={20} className="text-[#56C5C5]" />
+                  </motion.div>
                   <div>
-                    <p className="text-[#56C5C5] font-bold text-sm leading-tight">248 days</p>
+                    <p className="text-[#56C5C5] font-bold text-sm leading-tight">248+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">CodeChef Streak</p>
                   </div>
                 </a>
