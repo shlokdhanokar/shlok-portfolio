@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiSend, FiMail, FiGithub, FiLinkedin, FiArrowUpRight } from 'react-icons/fi';
+import { FiSend, FiMail, FiGithub, FiLinkedin, FiArrowUpRight, FiPhone } from 'react-icons/fi';
+import { SiCodechef, SiLeetcode } from 'react-icons/si';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -19,6 +20,9 @@ export default function Contact() {
     { name: 'GitHub', icon: <FiGithub />, href: 'https://github.com/shlokdhanokar', color: 'hover:border-white/20' },
     { name: 'LinkedIn', icon: <FiLinkedin />, href: 'https://linkedin.com/in/shlokdhanokar', color: 'hover:border-blue-500/30' },
     { name: 'Email', icon: <FiMail />, href: 'mailto:shlokdhanokar@gmail.com', color: 'hover:border-primary-500/30' },
+    { name: '+91 91681 35674', icon: <FiPhone />, href: 'tel:+919168135674', color: 'hover:border-green-500/30' },
+    { name: 'CodeChef', icon: <SiCodechef />, href: 'https://www.codechef.com/users/shlok_dhanokar', color: 'hover:border-amber-500/30' },
+    { name: 'LeetCode', icon: <SiLeetcode />, href: 'https://leetcode.com/u/shlok_dhanokar/', color: 'hover:border-yellow-500/30' },
   ];
 
   return (

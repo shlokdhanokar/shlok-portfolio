@@ -1,6 +1,31 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiTrendingUp } from 'react-icons/fi';
 
+const techLogos: Record<string, string> = {
+  Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  OpenCV: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg',
+  TensorFlow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
+  Azure: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
+  LangChain: 'https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png',
+  Flask: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',
+  React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  MongoDB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
+  BERT: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
+  Gemini: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg',
+  NLP: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  'Deep Learning': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
+  Whisper: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  Streamlit: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg',
+  LangGraph: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  FAISS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  YOLOv8: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  GenAI: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg',
+  FFmpeg: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
+  MediaPipe: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg',
+  TypeScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+  Vercel: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',
+};
+
 interface ProjectData {
   title: string;
   subtitle: string;
@@ -207,8 +232,9 @@ export default function Projects() {
                         {project.tech.map((t) => (
                           <span
                             key={t}
-                            className="px-3 py-1 rounded-lg text-xs font-medium bg-white/5 text-dark-300 border border-white/5"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-dark-300 border border-white/5"
                           >
+                            {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3.5 h-3.5 object-contain" />}
                             {t}
                           </span>
                         ))}
@@ -304,7 +330,8 @@ export default function Projects() {
                 <div className="flex items-center justify-between mt-auto">
                   <div className="flex flex-wrap gap-1.5">
                     {proj.tech.slice(0, 3).map((t) => (
-                      <span key={t} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-white/5 text-dark-400 border border-white/5">
+                      <span key={t} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-medium bg-white/5 text-dark-400 border border-white/5">
+                        {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3 h-3 object-contain" />}
                         {t}
                       </span>
                     ))}

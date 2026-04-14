@@ -194,39 +194,41 @@
 }
 
 /* ============================
-   LIGHT THEME OVERRIDES
+   SMOOTH THEME TRANSITION
    ============================ */
-.light body,
-.light {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
+*, *::before, *::after {
+  transition: background-color 0.5s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, fill 0.4s ease;
 }
 
+/* ============================
+   LIGHT THEME OVERRIDES
+   ============================ */
 .light body {
   background-color: #f8fafc;
   color: #1e293b;
 }
 
+/* --- Glass Cards --- */
 .light .glass-card {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.75);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .light .glass-card-hover:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.12);
 }
 
+/* --- Grid background --- */
 .light .grid-bg {
   background-image:
     linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }
 
+/* --- Scrollbar --- */
 .light ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
@@ -234,4 +236,81 @@
 .light ::selection {
   background: rgba(59, 143, 255, 0.2);
   color: #0f172a;
+}
+
+/* --- ALL text-white elements become dark --- */
+.light .text-white {
+  color: #0f172a !important;
+}
+
+/* --- Muted/secondary text --- */
+.light .text-dark-300 {
+  color: #475569 !important;
+}
+
+.light .text-dark-400 {
+  color: #64748b !important;
+}
+
+/* --- Borders --- */
+.light .border-white\/5,
+.light .border-white\/\[0\.04\],
+.light .border-white\/\[0\.06\],
+.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* --- Backgrounds with white opacity --- */
+.light .bg-white\/5,
+.light .bg-white\/\[0\.02\],
+.light .bg-white\/\[0\.03\] {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.light .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* --- Section background --- */
+.light .bg-dark-950 {
+  background-color: #f8fafc !important;
+}
+
+.light .bg-dark-900 {
+  background-color: #f1f5f9 !important;
+}
+
+/* --- Tags --- */
+.light .tag {
+  background: rgba(59, 143, 255, 0.06);
+  border-color: rgba(59, 143, 255, 0.15);
+  color: #2563eb;
+}
+
+/* --- Gradient orbs toned down --- */
+.light .blur-\[150px\] {
+  opacity: 0.3;
+}
+
+/* --- Timeline dot border --- */
+.light .border-dark-950 {
+  border-color: #f8fafc !important;
+}
+
+/* --- Section subtitle readability --- */
+.light .section-subtitle {
+  color: #475569 !important;
+}
+
+/* --- Metric cards --- */
+.light .text-primary-400 {
+  color: #2563eb !important;
+}
+
+.light .text-accent-400 {
+  color: #7c3aed !important;
+}
+
+.light .text-cyan-400 {
+  color: #0891b2 !important;
 }

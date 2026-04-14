@@ -3,7 +3,7 @@ import { FiBriefcase, FiArrowRight, FiCalendar } from 'react-icons/fi';
 
 const techLogos: Record<string, string> = {
   Azure: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
-  LangChain: 'https://cdn.worldvectorlogo.com/logos/langchain.svg',
+  LangChain: 'https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png',
   Flask: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',
   React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   MongoDB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
