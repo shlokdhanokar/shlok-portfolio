@@ -52,7 +52,7 @@ export default function Hero() {
       <div className="absolute bottom-1/3 -right-48 w-[400px] h-[400px] bg-accent-500/8 rounded-full blur-[150px]" />
 
       {/* Full-width container */}
-      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 xl:px-20">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 xl:px-20 pt-28">
         <div className="grid lg:grid-cols-5 gap-10 lg:gap-20 items-center">
           {/* Left: Text content — takes 3 cols for more room */}
           <div className="lg:col-span-3">
