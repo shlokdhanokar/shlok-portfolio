@@ -140,7 +140,7 @@ export default function Experience() {
                           <img
                             src={techLogos[t]}
                             alt={t}
-                            className="w-4 h-4 object-contain brightness-0 invert opacity-80"
+                            className="w-4 h-4 object-contain"
                             onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                           />
                         )}

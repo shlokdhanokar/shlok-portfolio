@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink, FiTrendingUp } from 'react-icons/fi';
+import { FiGithub, FiTrendingUp } from 'react-icons/fi';
 
 const techLogos: Record<string, string> = {
   Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
@@ -234,7 +234,7 @@ export default function Projects() {
                             key={t}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-dark-300 border border-white/5"
                           >
-                            {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3.5 h-3.5 object-contain brightness-0 invert opacity-70" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />}
+                            {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3.5 h-3.5 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />}
                             {t}
                           </span>
                         ))}
@@ -264,15 +264,6 @@ export default function Projects() {
                       >
                         <FiGithub size={15} />
                         Source Code
-                      </a>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-dark-300 hover:text-white hover:bg-white/10 hover:border-primary-500/30 transition-all duration-300 font-medium"
-                      >
-                        <FiExternalLink size={15} />
-                        Live Demo
                       </a>
                     </div>
                   </div>
@@ -331,7 +322,7 @@ export default function Projects() {
                   <div className="flex flex-wrap gap-1.5">
                     {proj.tech.slice(0, 3).map((t) => (
                       <span key={t} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-medium bg-white/5 text-dark-400 border border-white/5">
-                        {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3 h-3 object-contain brightness-0 invert opacity-70" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />}
+                        {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3 h-3 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />}
                         {t}
                       </span>
                     ))}
