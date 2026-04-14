@@ -1,10 +1,21 @@
 import { motion } from 'framer-motion';
-import { FiBriefcase, FiArrowRight } from 'react-icons/fi';
+import { FiBriefcase, FiArrowRight, FiCalendar } from 'react-icons/fi';
+
+const techLogos: Record<string, string> = {
+  Azure: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
+  LangChain: 'https://cdn.worldvectorlogo.com/logos/langchain.svg',
+  Flask: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',
+  React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  MongoDB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
+  Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  'Agentic AI': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
+};
 
 interface ExperienceItem {
   role: string;
   company: string;
   duration: string;
+  dateRange: string;
   type: string;
   points: string[];
   tech: string[];
@@ -15,6 +26,7 @@ const experiences: ExperienceItem[] = [
     role: 'AI Intern',
     company: 'Coforge BPS',
     duration: 'Recent',
+    dateRange: 'May 2025 – Jul 2025',
     type: 'Internship',
     points: [
       'Built an end-to-end KYC verification pipeline on Azure cloud infrastructure',
@@ -22,7 +34,7 @@ const experiences: ExperienceItem[] = [
       'Compressed document processing time from 48 hours to just 8 hours',
       'Optimized API response latency by 30% via caching and async processing',
     ],
-    tech: ['Azure', 'LangChain', 'Flask', 'React', 'MongoDB', 'Python'],
+    tech: ['Azure', 'LangChain', 'Agentic AI', 'Flask', 'React', 'MongoDB', 'Python'],
   },
 ];
 
@@ -81,7 +93,11 @@ export default function Experience() {
                     <FiBriefcase size={12} />
                     {exp.duration}
                   </span>
-                  <p className="text-dark-400 text-sm mt-2">{exp.type}</p>
+                  <div className="flex items-center gap-2 mt-3 md:justify-end">
+                    <FiCalendar className="text-dark-400" size={13} />
+                    <p className="text-dark-300 text-sm font-medium">{exp.dateRange}</p>
+                  </div>
+                  <p className="text-dark-400 text-sm mt-1">{exp.type}</p>
                 </motion.div>
               </div>
 
@@ -116,10 +132,13 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  {/* Tech stack */}
+                  {/* Tech stack with logos */}
                   <div className="flex flex-wrap gap-2">
                     {exp.tech.map((t) => (
-                      <span key={t} className="px-2.5 py-1 rounded-md text-xs font-medium bg-white/5 text-dark-400 border border-white/5">
+                      <span key={t} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-dark-300 border border-white/5 hover:border-primary-500/30 hover:bg-white/10 transition-all duration-300">
+                        {techLogos[t] && (
+                          <img src={techLogos[t]} alt={t} className="w-4 h-4 object-contain" />
+                        )}
                         {t}
                       </span>
                     ))}

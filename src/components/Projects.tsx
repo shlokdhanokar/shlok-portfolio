@@ -57,6 +57,79 @@ const projects: ProjectData[] = [
   },
 ];
 
+interface OtherProject {
+  name: string;
+  description: string;
+  url: string;
+  tech: string[];
+  language: string;
+  langColor: string;
+  gradient: string;
+  icon: string;
+}
+
+const otherProjects: OtherProject[] = [
+  {
+    name: 'Agentic Voice Sandbox',
+    description: 'A local, voice-controlled AI agent that transcribes audio via Whisper, classifies intents using LLMs, and safely executes sandboxed code or file operations.',
+    url: 'https://github.com/shlokdhanokar/Agentic-Voice-Sandbox',
+    tech: ['Python', 'Whisper', 'Streamlit'],
+    language: 'Python',
+    langColor: 'bg-yellow-400',
+    gradient: 'from-violet-600 to-indigo-600',
+    icon: '🎙️',
+  },
+  {
+    name: 'LangGraph Sales Agent',
+    description: 'Production-grade GenAI agent built with LangGraph and Gemini. State-machine architecture with FAISS-powered RAG and multi-turn memory for lead capture.',
+    url: 'https://github.com/shlokdhanokar/langgraph-sales-agent',
+    tech: ['LangGraph', 'Gemini', 'FAISS'],
+    language: 'Python',
+    langColor: 'bg-yellow-400',
+    gradient: 'from-emerald-600 to-teal-600',
+    icon: '🤖',
+  },
+  {
+    name: 'SmartSafe Object Detection',
+    description: 'Real-time safety compliance system powered by YOLOv8 and OpenCV. Streams live webcam video over Flask-WebSocket for instant helmet and package detection.',
+    url: 'https://github.com/shlokdhanokar/SmartSafe-Object-Detection',
+    tech: ['YOLOv8', 'OpenCV', 'Flask'],
+    language: 'Python',
+    langColor: 'bg-yellow-400',
+    gradient: 'from-red-600 to-orange-600',
+    icon: '🛡️',
+  },
+  {
+    name: 'AutoShorts AI',
+    description: 'Autonomous AI system for short-form video creation. Generates scripts, visuals, and edits automatically using generative AI pipelines.',
+    url: 'https://github.com/shlokdhanokar/autoshorts-ai',
+    tech: ['Python', 'GenAI', 'FFmpeg'],
+    language: 'Python',
+    langColor: 'bg-yellow-400',
+    gradient: 'from-pink-600 to-rose-600',
+    icon: '🎬',
+  },
+  {
+    name: 'Gesture Brightness Control',
+    description: 'Computer vision system that adjusts screen brightness using hand gestures detected via MediaPipe. Real-time finger distance tracking for intuitive control.',
+    url: 'https://github.com/shlokdhanokar/Gesture-Based-Brightness-Control-System',
+    tech: ['MediaPipe', 'OpenCV', 'Python'],
+    language: 'Python',
+    langColor: 'bg-yellow-400',
+    gradient: 'from-cyan-600 to-blue-600',
+    icon: '✋',
+  },
+  {
+    name: 'Hospital Management System',
+    description: 'Full-stack hospital bed management application with real-time availability tracking, patient admission workflows, and admin dashboard.',
+    url: 'https://github.com/shlokdhanokar/Hospital-Management-System',
+    tech: ['TypeScript', 'React', 'Vercel'],
+    language: 'TypeScript',
+    langColor: 'bg-blue-500',
+    gradient: 'from-amber-600 to-yellow-600',
+    icon: '🏥',
+  },
+];
 const containerVariants = {
   hidden: {},
   visible: {
@@ -180,6 +253,69 @@ export default function Projects() {
                 </div>
               </div>
             </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Other Projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7 }}
+          className="text-center mt-24 mb-12"
+        >
+          <span className="tag mb-4">Explore More</span>
+          <h3 className="text-2xl md:text-3xl font-bold text-white mt-4">
+            Other <span className="gradient-text">Projects</span>
+          </h3>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {otherProjects.map((proj) => (
+            <motion.a
+              key={proj.name}
+              variants={cardVariants}
+              href={proj.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block"
+            >
+              <div className="absolute -inset-[1px] bg-gradient-to-r from-transparent via-primary-500/15 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative glass-card glass-card-hover rounded-2xl p-6 h-full flex flex-col">
+                {/* Header */}
+                <div className="flex items-start justify-between mb-4">
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${proj.gradient} flex items-center justify-center text-lg`}>
+                    {proj.icon}
+                  </div>
+                  <FiGithub className="text-dark-400 group-hover:text-primary-400 transition-colors" size={18} />
+                </div>
+
+                {/* Title & Description */}
+                <h4 className="text-white font-bold text-lg mb-2 group-hover:text-primary-400 transition-colors">{proj.name}</h4>
+                <p className="text-dark-400 text-sm leading-relaxed mb-5 flex-grow">{proj.description}</p>
+
+                {/* Tech & Language */}
+                <div className="flex items-center justify-between mt-auto">
+                  <div className="flex flex-wrap gap-1.5">
+                    {proj.tech.slice(0, 3).map((t) => (
+                      <span key={t} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-white/5 text-dark-400 border border-white/5">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className={`w-2.5 h-2.5 rounded-full ${proj.langColor}`} />
+                    <span className="text-dark-400 text-xs">{proj.language}</span>
+                  </div>
+                </div>
+              </div>
+            </motion.a>
           ))}
         </motion.div>
       </div>

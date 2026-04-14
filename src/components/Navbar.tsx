@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import { FiDownload } from 'react-icons/fi';
+import { FiDownload, FiSun, FiMoon } from 'react-icons/fi';
+import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -15,6 +16,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,10 +40,16 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-white/5 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
+          theme === 'dark' ? 'border-white/5' : 'border-black/5'
+        } ${
           scrolled
-            ? 'bg-[#030712]/80 backdrop-blur-xl shadow-lg shadow-black/20'
-            : 'bg-[#030712]/50 backdrop-blur-sm'
+            ? theme === 'dark'
+              ? 'bg-[#030712]/80 backdrop-blur-xl shadow-lg shadow-black/20'
+              : 'bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5'
+            : theme === 'dark'
+              ? 'bg-[#030712]/50 backdrop-blur-sm'
+              : 'bg-white/50 backdrop-blur-sm'
         }`}
       >
         <div className="w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 xl:px-20">
@@ -56,9 +64,9 @@ export default function Navbar() {
                 />
               </div>
               <div className="hidden sm:block">
-                <span className="text-xl font-bold text-white">Shlok</span>
+                <span className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>Shlok</span>
                 <span className="text-xl font-bold text-primary-500">.</span>
-                <span className="text-dark-400 text-sm font-normal ml-1 hidden lg:inline">dev</span>
+                <span className={`text-sm font-normal ml-1 hidden lg:inline ${theme === 'dark' ? 'text-dark-400' : 'text-slate-500'}`}>dev</span>
               </div>
             </a>
 
@@ -84,10 +92,17 @@ export default function Navbar() {
                   )}
                 </a>
               ))}
+              <button
+                onClick={toggleTheme}
+                className="ml-3 p-2.5 rounded-xl bg-white/5 border border-white/10 text-dark-300 hover:text-white hover:bg-white/10 hover:border-primary-500/30 transition-all duration-300"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? <FiSun size={16} /> : <FiMoon size={16} />}
+              </button>
               <a
                 href="/Shlok_Resume.pdf"
                 download="Shlok_Dhanokar_Resume.pdf"
-                className="ml-3 btn-primary text-white text-sm !py-2.5 !px-5 group"
+                className="ml-2 btn-primary text-white text-sm !py-2.5 !px-5 group"
               >
                 <FiDownload size={14} className="group-hover:animate-bounce" />
                 Resume
