@@ -217,6 +217,54 @@ export default function Hero() {
                   <p className="text-sm font-semibold text-accent-400">Pre-Final</p>
                 </div>
               </div>
+
+              {/* Coding Streak badges — below stat cards */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.9 }}
+                className="flex items-center gap-3 mt-4"
+              >
+                {/* LeetCode streak */}
+                <a
+                  href="https://leetcode.com/u/shlok_dhanokar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group glass-card px-4 py-2.5 rounded-xl border border-[#FFA116]/20 hover:border-[#FFA116]/50 hover:bg-[#FFA116]/5 transition-all duration-500 flex items-center gap-2.5 shadow-lg"
+                >
+                  <div className="relative">
+                    <motion.span
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
+                      className="text-lg leading-none"
+                    >🔥</motion.span>
+                  </div>
+                  <div>
+                    <p className="text-[#FFA116] font-bold text-sm leading-tight">300+ days</p>
+                    <p className="text-dark-400 text-[10px] uppercase tracking-wider">LeetCode Streak</p>
+                  </div>
+                </a>
+
+                {/* CodeChef streak */}
+                <a
+                  href="https://www.codechef.com/users/shlok_dhanokar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group glass-card px-4 py-2.5 rounded-xl border border-[#56C5C5]/20 hover:border-[#56C5C5]/50 hover:bg-[#56C5C5]/5 transition-all duration-500 flex items-center gap-2.5 shadow-lg"
+                >
+                  <div className="relative">
+                    <motion.span
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1.3 }}
+                      className="text-lg leading-none"
+                    >⚡</motion.span>
+                  </div>
+                  <div>
+                    <p className="text-[#56C5C5] font-bold text-sm leading-tight">248 days</p>
+                    <p className="text-dark-400 text-[10px] uppercase tracking-wider">CodeChef Streak</p>
+                  </div>
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         </div>
