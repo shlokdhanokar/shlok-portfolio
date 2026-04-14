@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
-import { SiLeetcode, SiCodechef } from 'react-icons/si';
+import { SiLeetcode, SiCodechef, SiDuolingo } from 'react-icons/si';
 
 const roles = [
   'AI/ML Engineer',
@@ -261,6 +261,25 @@ export default function Hero() {
                   <div>
                     <p className="text-[#56C5C5] font-bold text-sm leading-tight">248+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">CodeChef Streak</p>
+                  </div>
+                </a>
+
+                {/* Duolingo streak */}
+                <a
+                  href="https://www.duolingo.com/profile/SHLOKDHANO"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group glass-card px-4 py-2.5 rounded-xl border border-[#58CC02]/20 hover:border-[#58CC02]/50 hover:bg-[#58CC02]/5 transition-all duration-500 flex items-center gap-2.5 shadow-lg"
+                >
+                  <motion.div
+                    animate={{ scale: [1, 1.15, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 1.8 }}
+                  >
+                    <SiDuolingo size={20} className="text-[#58CC02]" />
+                  </motion.div>
+                  <div>
+                    <p className="text-[#58CC02] font-bold text-sm leading-tight">136+ days</p>
+                    <p className="text-dark-400 text-[10px] uppercase tracking-wider">Duolingo 🇯🇵 Japanese</p>
                   </div>
                 </a>
               </motion.div>

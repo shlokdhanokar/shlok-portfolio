@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiUsers, FiHeart, FiStar, FiCalendar } from 'react-icons/fi';
+import { FiUsers, FiHeart, FiCalendar, FiAward, FiExternalLink } from 'react-icons/fi';
 
 interface LeadershipItem {
   title: string;
@@ -35,12 +35,111 @@ const leadership: LeadershipItem[] = [
   },
 ];
 
+const achievements = [
+  {
+    icon: '🏆',
+    badge: '1st Place',
+    badgeColor: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+    title: 'IEEE Hackathon Winner',
+    description: 'Won first place at the IEEE Hackathon for building an AI-based assistive navigation solution. Recognized for technical excellence, real-world applicability, and impactful problem-solving in the accessibility space.',
+  },
+  {
+    icon: '🎖️',
+    badge: 'Finalist',
+    badgeColor: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+    title: 'MERN AI Hackathon Finalist',
+    description: 'Selected as a finalist in a competitive MERN + AI hackathon, building a full-stack AI-powered application under time constraints, demonstrating rapid prototyping and GenAI integration skills.',
+  },
+  {
+    icon: '♟️',
+    badge: 'Certified',
+    badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    title: 'FIDE Chess Certification — Amravati',
+    description: 'Certified by FIDE (International Chess Federation) in Amravati, demonstrating strategic thinking, analytical reasoning, and competitive discipline at a recognized international level.',
+  },
+  {
+    icon: '⭐',
+    badge: 'Rating Milestone',
+    badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+    title: 'CodeChef 500→1000 Rating',
+    description: 'Doubled competitive programming rating on CodeChef from 500 to 1000+ through consistent practice and problem-solving, reflecting a strong foundation in algorithms and data structures.',
+  },
+  {
+    icon: '🎓',
+    badge: 'VIT Bhopal',
+    badgeColor: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+    title: 'Solvit Annual Fest Winner',
+    description: 'Recognized at VIT Bhopal\'s tech fest Solvit for outstanding technical performance and innovative project presentation.',
+  },
+];
+
+const certifications = [
+  {
+    icon: '☁️',
+    title: 'AWS Technical Essentials',
+    issuer: 'Amazon Web Services',
+    color: 'from-orange-500/20 to-amber-500/20',
+    borderColor: 'border-orange-500/20',
+  },
+  {
+    icon: '☁️',
+    title: 'AWS Cloud Practitioner (Practice)',
+    issuer: 'Amazon Web Services',
+    color: 'from-orange-500/20 to-amber-500/20',
+    borderColor: 'border-orange-500/20',
+  },
+  {
+    icon: '☁️',
+    title: 'AWS Cloud Computing — Intellipaat',
+    issuer: 'Intellipaat',
+    color: 'from-orange-400/20 to-yellow-500/20',
+    borderColor: 'border-orange-400/20',
+  },
+  {
+    icon: '🐍',
+    title: 'Python + Machine Learning',
+    issuer: 'Coursera',
+    color: 'from-blue-500/20 to-indigo-500/20',
+    borderColor: 'border-blue-500/20',
+  },
+  {
+    icon: '☕',
+    title: 'Java Programming',
+    issuer: 'HackerRank',
+    color: 'from-red-500/20 to-orange-500/20',
+    borderColor: 'border-red-500/20',
+  },
+  {
+    icon: '👁️',
+    title: 'Computer Vision',
+    issuer: 'Vityarthi',
+    color: 'from-cyan-500/20 to-blue-500/20',
+    borderColor: 'border-cyan-500/20',
+  },
+  {
+    icon: '🗄️',
+    title: 'Database Management Systems',
+    issuer: 'VIT Bhopal',
+    color: 'from-teal-500/20 to-green-500/20',
+    borderColor: 'border-teal-500/20',
+  },
+  {
+    icon: '🌐',
+    title: 'NPTEL Cloud Computing',
+    issuer: 'NPTEL — IIT',
+    color: 'from-indigo-500/20 to-purple-500/20',
+    borderColor: 'border-indigo-500/20',
+  },
+];
+
 export default function Leadership() {
   return (
     <section id="leadership" className="section-padding relative overflow-hidden">
       <div className="absolute top-0 left-1/2 w-[400px] h-[400px] bg-primary-600/5 rounded-full blur-[150px]" />
 
       <div className="w-full max-w-[1600px] mx-auto relative z-10">
+
+        {/* ── Leadership ── */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,11 +167,8 @@ export default function Leadership() {
               className="group"
             >
               <div className="glass-card glass-card-hover rounded-2xl p-8 h-full relative overflow-hidden">
-                {/* Background gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
                 <div className="relative z-10">
-                  {/* Header */}
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden shrink-0">
                       <img src={item.iconImg} alt={item.organization} className="w-full h-full object-cover" />
@@ -82,18 +178,10 @@ export default function Leadership() {
                       <p className="text-dark-400 text-sm">{item.organization}</p>
                     </div>
                   </div>
-
-                  <p className="text-dark-300 text-sm leading-relaxed mb-6">
-                    {item.description}
-                  </p>
-
-                  {/* Stats */}
+                  <p className="text-dark-300 text-sm leading-relaxed mb-6">{item.description}</p>
                   <div className="flex gap-4">
                     {item.stats.map((stat) => (
-                      <div
-                        key={stat.label}
-                        className="flex-1 p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] text-center"
-                      >
+                      <div key={stat.label} className="flex-1 p-4 rounded-xl bg-white/[0.03] border border-white/[0.05] text-center">
                         <div className="flex items-center justify-center gap-1.5 text-primary-400 mb-1">
                           {stat.icon}
                           <span className="font-bold text-xl">{stat.value}</span>
@@ -108,54 +196,100 @@ export default function Leadership() {
           ))}
         </div>
 
-        {/* Achievements section inline */}
+        {/* ── Achievements ── */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7 }}
-          className="mt-20"
+          className="mt-24"
         >
           <div className="text-center mb-12">
             <span className="tag mb-4">Recognition</span>
             <h2 className="section-title text-white mt-4 !text-3xl md:!text-4xl">
-              Achievements & <span className="gradient-text">Awards</span>
+              Achievements <span className="gradient-text">& Awards</span>
             </h2>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-2xl mx-auto"
-          >
-            <div className="glass-card rounded-2xl p-8 relative overflow-hidden group glass-card-hover">
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative z-10 flex items-start gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-amber-500/20 border border-yellow-500/20 flex items-center justify-center">
-                    <span className="text-3xl">🏆</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {achievements.map((ach, index) => (
+              <motion.div
+                key={ach.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="glass-card glass-card-hover rounded-2xl p-6 h-full relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl shrink-0">
+                        {ach.icon}
+                      </div>
+                      <div>
+                        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold border ${ach.badgeColor} mb-2`}>
+                          <FiAward size={10} />
+                          {ach.badge}
+                        </span>
+                        <h3 className="text-white font-bold text-base leading-snug mb-2">{ach.title}</h3>
+                        <p className="text-dark-400 text-xs leading-relaxed">{ach.description}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="px-2.5 py-0.5 rounded-md bg-yellow-500/10 text-yellow-400 text-xs font-bold border border-yellow-500/20">
-                      1st Place
-                    </span>
-                    <FiStar className="text-yellow-400" size={14} />
-                  </div>
-                  <h3 className="text-white font-bold text-xl mb-2">IEEE Hackathon Winner</h3>
-                  <p className="text-dark-300 text-sm leading-relaxed">
-                    Won first place at the IEEE Hackathon for building an innovative AI-based
-                    assistive solution. Recognized for technical excellence, real-world applicability,
-                    and impactful problem-solving in the accessibility space.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
+
+        {/* ── Certifications ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7 }}
+          className="mt-24"
+        >
+          <div className="text-center mb-12">
+            <span className="tag mb-4">Learning</span>
+            <h2 className="section-title text-white mt-4 !text-3xl md:!text-4xl">
+              Certifications <span className="gradient-text">& Courses</span>
+            </h2>
+            <p className="section-subtitle mx-auto mt-4">
+              Continuously upskilling across cloud, AI, and software engineering
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={cert.title}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.07 }}
+                className="group"
+              >
+                <div className={`glass-card glass-card-hover rounded-xl p-5 h-full relative overflow-hidden border ${cert.borderColor}`}>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-30 group-hover:opacity-60 transition-opacity duration-500`} />
+                  <div className="relative z-10 flex flex-col items-start gap-3">
+                    <span className="text-2xl">{cert.icon}</span>
+                    <div>
+                      <h3 className="text-white font-semibold text-sm leading-snug mb-1">{cert.title}</h3>
+                      <div className="flex items-center gap-1 text-dark-400 text-[10px] uppercase tracking-wider">
+                        <FiExternalLink size={9} />
+                        {cert.issuer}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
