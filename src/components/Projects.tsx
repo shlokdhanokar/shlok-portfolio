@@ -6,7 +6,7 @@ const techLogos: Record<string, string> = {
   OpenCV: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg',
   TensorFlow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
   Azure: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
-  LangChain: 'https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png',
+  LangChain: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/langchain.svg',
   Flask: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',
   React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   MongoDB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
@@ -234,7 +234,7 @@ export default function Projects() {
                             key={t}
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-dark-300 border border-white/5"
                           >
-                            {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3.5 h-3.5 object-contain" />}
+                            {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3.5 h-3.5 object-contain brightness-0 invert opacity-70" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />}
                             {t}
                           </span>
                         ))}
@@ -331,7 +331,7 @@ export default function Projects() {
                   <div className="flex flex-wrap gap-1.5">
                     {proj.tech.slice(0, 3).map((t) => (
                       <span key={t} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-medium bg-white/5 text-dark-400 border border-white/5">
-                        {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3 h-3 object-contain" />}
+                        {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-3 h-3 object-contain brightness-0 invert opacity-70" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />}
                         {t}
                       </span>
                     ))}

@@ -3,7 +3,7 @@ import { FiBriefcase, FiArrowRight, FiCalendar } from 'react-icons/fi';
 
 const techLogos: Record<string, string> = {
   Azure: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
-  LangChain: 'https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png',
+  LangChain: 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/langchain.svg',
   Flask: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',
   React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   MongoDB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
@@ -137,7 +137,12 @@ export default function Experience() {
                     {exp.tech.map((t) => (
                       <span key={t} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-dark-300 border border-white/5 hover:border-primary-500/30 hover:bg-white/10 transition-all duration-300">
                         {techLogos[t] && (
-                          <img src={techLogos[t]} alt={t} className="w-4 h-4 object-contain" />
+                          <img
+                            src={techLogos[t]}
+                            alt={t}
+                            className="w-4 h-4 object-contain brightness-0 invert opacity-80"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                          />
                         )}
                         {t}
                       </span>
