@@ -102,6 +102,33 @@ const achievements: AchievementItem[] = [
     file: '/achievements/Solvit certificate.pdf',
     fileType: 'pdf',
   },
+  {
+    icon: '🔥',
+    badge: '50 Days',
+    badgeColor: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+    title: '50-Day LeetCode Badge',
+    description: 'Earned the 50-day consistency badge on LeetCode by solving problems daily without breaks — building strong algorithmic fundamentals.',
+    file: '/achievements/50 day badge.png',
+    fileType: 'image',
+  },
+  {
+    icon: '💯',
+    badge: '100 Days',
+    badgeColor: 'bg-[#FFA116]/10 text-[#FFA116] border-[#FFA116]/20',
+    title: '100-Day LeetCode Badge',
+    description: 'Reached the elite 100-day streak on LeetCode — consistently solving competitive problems daily across data structures, algorithms, and dynamic programming.',
+    file: '/achievements/100 days leetcode badge.png',
+    fileType: 'image',
+  },
+  {
+    icon: '🦉',
+    badge: '100 Days',
+    badgeColor: 'bg-[#58CC02]/10 text-[#58CC02] border-[#58CC02]/20',
+    title: '100-Day Duolingo Streak — Japanese',
+    description: 'Achieved a 100-day streak learning Japanese on Duolingo, demonstrating discipline and consistency in language acquisition alongside technical skills.',
+    file: '/achievements/100 days Duolingo.jpeg',
+    fileType: 'image',
+  },
 ];
 
 const certifications: CertItem[] = [

@@ -243,6 +243,7 @@ export default function Hero() {
                     <p className="text-[#FFA116] font-bold text-sm leading-tight">300+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">LeetCode Streak</p>
                   </div>
+                  <FiArrowRight size={14} className="text-[#FFA116]/40 group-hover:text-[#FFA116] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />
                 </a>
 
                 {/* CodeChef streak */}
@@ -262,6 +263,7 @@ export default function Hero() {
                     <p className="text-[#56C5C5] font-bold text-sm leading-tight">248+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">CodeChef Streak</p>
                   </div>
+                  <FiArrowRight size={14} className="text-[#56C5C5]/40 group-hover:text-[#56C5C5] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />
                 </a>
 
                 {/* Duolingo streak */}
@@ -281,6 +283,7 @@ export default function Hero() {
                     <p className="text-[#58CC02] font-bold text-sm leading-tight">136+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">Duolingo 🇯🇵 Japanese</p>
                   </div>
+                  <FiArrowRight size={14} className="text-[#58CC02]/40 group-hover:text-[#58CC02] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />
                 </a>
               </motion.div>
             </div>
