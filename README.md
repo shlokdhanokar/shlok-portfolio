@@ -47,4 +47,4 @@ Output will be in the `dist/` directory.
 
 ## 📄 License
 
-MIT © Shlok Dhanokar
+MIT © Shlok Dhanokar 
