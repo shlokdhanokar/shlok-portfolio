@@ -318,3 +318,12 @@
 .light .text-cyan-400 {
   color: #0891b2 !important;
 }
+
+/* ============================
+   CUSTOM CURSOR SETTINGS
+   ============================ */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
