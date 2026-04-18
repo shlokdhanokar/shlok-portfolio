@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
 import { SiLeetcode, SiCodechef, SiDuolingo } from 'react-icons/si';
+import NeuralNetworkCanvas from './canvas/NeuralNetworkCanvas';
 
 const roles = [
   'AI/ML Engineer',
@@ -46,11 +47,14 @@ export default function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
     >
       {/* Subtle grid background */}
-      <div className="absolute inset-0 grid-bg" />
+      <div className="absolute inset-0 grid-bg opacity-30" />
+
+      {/* 3D Neural Network Background */}
+      <NeuralNetworkCanvas />
 
       {/* Gradient orbs */}
-      <div className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-primary-600/10 rounded-full blur-[150px]" />
-      <div className="absolute bottom-1/3 -right-48 w-[400px] h-[400px] bg-accent-500/8 rounded-full blur-[150px]" />
+      <div className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-primary-600/10 rounded-full blur-[150px] pointer-events-none z-0" />
+      <div className="absolute bottom-1/3 -right-48 w-[400px] h-[400px] bg-accent-500/8 rounded-full blur-[150px] pointer-events-none z-0" />
 
       {/* Full-width container */}
       <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 xl:px-20 pt-28">
