@@ -11,7 +11,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 72px;
   }
 
   body {
@@ -115,7 +115,7 @@
   }
 
   .section-padding {
-    @apply px-6 md:px-12 lg:px-20 xl:px-32 pt-4 pb-20 md:pt-6 md:pb-28;
+    @apply px-6 md:px-12 lg:px-20 xl:px-32 pt-0 pb-20 md:pt-0 md:pb-28;
   }
 
   .section-title {
