@@ -115,7 +115,7 @@
   }
 
   .section-padding {
-    @apply px-6 md:px-12 lg:px-20 xl:px-32 pt-12 pb-24 md:pt-16 md:pb-32;
+    @apply px-6 md:px-12 lg:px-20 xl:px-32 pt-4 pb-20 md:pt-6 md:pb-28;
   }
 
   .section-title {
