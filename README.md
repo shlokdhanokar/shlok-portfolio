@@ -7,12 +7,15 @@ My personal portfolio website built from scratch to showcase my projects, skills
 - **Frontend:** React 18, TypeScript
 - **Styling:** Tailwind CSS with custom design tokens
 - **Animations:** Framer Motion (scroll-triggered, hover effects, marquee)
+- **3D Graphics:** React Three Fiber, Three.js (`@react-three/drei`)
 - **Build Tool:** Vite
 - **Deployment:** Vercel
 
 ## 🧱 Features
 
-- Dark theme with glassmorphism UI and gradient accents
+- Interactive 3D Neural Network background (`@react-three/fiber`) that responds to mouse movement
+- Seamless Light/Dark theme toggle with dynamic material blending
+- Glassmorphism UI and gradient accents
 - Typing animation in the hero section
 - Skills marquee showcasing 28+ technologies with brand colors
 - Project showcase with custom logos and impact metrics
