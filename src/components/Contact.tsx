@@ -87,11 +87,7 @@ export default function Contact() {
               ))}
             </div>
 
-            {/* Quick stat */}
-            <div className="glass-card p-5 rounded-xl border-l-2 border-primary-500">
-              <p className="text-xs text-primary-400 font-semibold uppercase tracking-wider mb-1">Response Time</p>
-              <p className="text-dark-300 text-sm">Usually within 24 hours</p>
-            </div>
+
           </motion.div>
 
           {/* Contact form */}
