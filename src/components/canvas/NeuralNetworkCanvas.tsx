@@ -104,7 +104,7 @@ export default function NeuralNetworkCanvas() {
   const { theme } = useTheme();
 
   return (
-    <div className={`absolute inset-0 pointer-events-none z-[1] overflow-hidden transition-all duration-1000 ${
+    <div className={`absolute inset-0 pointer-events-none z-[1] overflow-hidden transition-opacity duration-700 ${
       theme === 'dark' ? 'opacity-100 mix-blend-screen' : 'opacity-70 mix-blend-multiply'
     }`}>
       <Canvas camera={{ position: [0, 0, 10], fov: 60 }} dpr={[1, 2]}>
