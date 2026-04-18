@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import Hero from './components/Hero';
@@ -13,6 +14,15 @@ import NeuralNetworkCanvas from './components/canvas/NeuralNetworkCanvas';
 
 function AppContent() {
   const { theme } = useTheme();
+
+  useEffect(() => {
+    // Prevent browser from restoring previous scroll position
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    // Force scroll to top
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={`relative min-h-screen overflow-x-hidden transition-colors duration-500 ${
