@@ -1,8 +1,9 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { useTheme } from '../../context/ThemeContext';
 
-function NeuralNetworkNodes() {
+function NeuralNetworkNodes({ theme }: { theme: string }) {
   const group = useRef<THREE.Group>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
 
@@ -74,6 +75,10 @@ function NeuralNetworkNodes() {
     linesRef.current.geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
   });
 
+  const particleColor = theme === 'dark' ? '#38bdf8' : '#0ea5e9';
+  const pointOpacity = theme === 'dark' ? 0.6 : 0.8;
+  const lineOpacity = theme === 'dark' ? 0.15 : 0.25;
+
   return (
     <group ref={group}>
       <points>
@@ -85,22 +90,26 @@ function NeuralNetworkNodes() {
             itemSize={3}
           />
         </bufferGeometry>
-        <pointsMaterial size={0.08} color="#38bdf8" transparent opacity={0.6} sizeAttenuation />
+        <pointsMaterial size={0.08} color={particleColor} transparent opacity={pointOpacity} sizeAttenuation />
       </points>
       <lineSegments ref={linesRef}>
         <bufferGeometry />
-        <lineBasicMaterial color="#38bdf8" transparent opacity={0.15} />
+        <lineBasicMaterial color={particleColor} transparent opacity={lineOpacity} />
       </lineSegments>
     </group>
   );
 }
 
 export default function NeuralNetworkCanvas() {
+  const { theme } = useTheme();
+
   return (
-    <div className="absolute inset-0 pointer-events-none z-[1] overflow-hidden opacity-100 mix-blend-screen transition-opacity duration-1000">
+    <div className={`absolute inset-0 pointer-events-none z-[1] overflow-hidden transition-all duration-1000 ${
+      theme === 'dark' ? 'opacity-100 mix-blend-screen' : 'opacity-70 mix-blend-multiply'
+    }`}>
       <Canvas camera={{ position: [0, 0, 10], fov: 60 }} dpr={[1, 2]}>
         <ambientLight intensity={0.5} />
-        <NeuralNetworkNodes />
+        <NeuralNetworkNodes theme={theme} />
       </Canvas>
     </div>
   );
