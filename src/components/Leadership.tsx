@@ -250,7 +250,6 @@ function PreviewModal({
               </div>
               <div>
                 <h3 className="text-white font-semibold text-sm">{title}</h3>
-                <p className="text-dark-400 text-xs">Click outside to close</p>
               </div>
             </div>
             <button
@@ -273,9 +272,9 @@ function PreviewModal({
               </div>
             ) : (
               <iframe
-                src={`${file}#toolbar=0&navpanes=0`}
+                src={`${file}#toolbar=0&navpanes=0&view=Fit`}
                 title={title}
-                className="w-full"
+                className="w-full pointer-events-none"
                 style={{ height: '75vh', minHeight: '500px', border: 'none' }}
               />
             )}

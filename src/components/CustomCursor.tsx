@@ -55,7 +55,7 @@ export default function CustomCursor() {
     <>
       {/* Small dot (follows cursor exactly) */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-primary-500 rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-2 h-2 bg-primary-500 rounded-full pointer-events-none z-[100000]"
         style={{
           x: cursorX,
           y: cursorY,
@@ -65,7 +65,7 @@ export default function CustomCursor() {
       />
       {/* Outer ring (follows with spring physics) */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9998] border border-primary-500"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[99999] border border-primary-500"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
