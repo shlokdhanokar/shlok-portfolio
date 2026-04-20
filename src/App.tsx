@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import NeuralNetworkCanvas from './components/canvas/NeuralNetworkCanvas';
+import AudioFeedback from './components/AudioFeedback';
 
 function AppContent() {
   const { theme } = useTheme();
@@ -36,6 +37,7 @@ function AppContent() {
       {/* Global 3D Background */}
       <NeuralNetworkCanvas />
 
+      <AudioFeedback />
       <CustomCursor />
       <Navbar />
 
