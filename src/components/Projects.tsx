@@ -83,7 +83,7 @@ const projects: ProjectData[] = [
       { label: 'Classification', value: '92%' },
       { label: 'Response Time ↓', value: '70%' },
     ],
-    github: 'https://github.com/shlokdhanokar/mailflow',
+    github: 'https://github.com/shlokdhanokar/MAILFLOW',
     gradient: 'from-emerald-500 to-teal-500',
     iconImg: '/logo-mailflow.png',
   },
