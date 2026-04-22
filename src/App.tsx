@@ -19,14 +19,6 @@ function AppContent() {
   const { theme } = useTheme();
   const [showSplash, setShowSplash] = useState(true);
 
-  // Check if splash has already been shown in this session
-  useEffect(() => {
-    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
-    if (hasSeenSplash) {
-      setShowSplash(false);
-    }
-  }, []);
-
   useEffect(() => {
     // Prevent browser from restoring previous scroll position
     if ('scrollRestoration' in history) {
@@ -50,7 +42,6 @@ function AppContent() {
 
   const handleSplashComplete = () => {
     setShowSplash(false);
-    sessionStorage.setItem('hasSeenSplash', 'true');
   };
 
   return (
