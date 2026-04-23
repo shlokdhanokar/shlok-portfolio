@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
+
+const Spline = lazy(() => import('@splinetool/react-spline'));
 import { SiLeetcode, SiCodechef, SiDuolingo } from 'react-icons/si';
 
 const roles = [
@@ -182,7 +184,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: Profile image — 2 cols, CLEAN without overlapping */}
+          {/* Right: Interactive 3D Model — 2 cols */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -190,17 +192,23 @@ export default function Hero() {
             className="hidden lg:flex lg:col-span-2 justify-center"
           >
             <div className="relative flex flex-col items-center">
-              {/* Decorative outer ring */}
-              <div className="absolute -inset-6 rounded-full border border-dashed border-white/[0.04] animate-spin-slow" />
-
-              {/* Main photo — clean, no overlapping elements on it */}
-              <div className="relative w-80 h-80 rounded-full overflow-hidden ring-2 ring-white/10 shadow-2xl shadow-primary-600/10">
-                <img
-                  src="/shlok-photo.png"
-                  alt="Shlok R. Dhanokar"
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-950/30 via-transparent to-transparent" />
+              {/* 3D Spline Scene */}
+              <div className="relative w-80 h-80 rounded-2xl overflow-hidden">
+                <Suspense
+                  fallback={
+                    <div className="w-full h-full flex items-center justify-center bg-white/[0.02] rounded-2xl border border-white/[0.06]">
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="w-12 h-12 rounded-full border-2 border-primary-500/30 border-t-primary-500 animate-spin" />
+                        <span className="text-dark-400 text-xs font-mono">Loading 3D</span>
+                      </div>
+                    </div>
+                  }
+                >
+                  <Spline
+                    scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                </Suspense>
               </div>
 
               {/* Badges BELOW the photo, nicely spaced — no overlap */}

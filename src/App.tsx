@@ -13,6 +13,7 @@ import { ThemeProvider, useTheme } from './context/ThemeContext';
 import NeuralNetworkCanvas from './components/canvas/NeuralNetworkCanvas';
 import AudioFeedback from './components/AudioFeedback';
 import SplashScreen from './components/SplashScreen';
+import SmoothScrolling from './components/SmoothScrolling';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function AppContent() {
@@ -92,7 +93,15 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <SmoothScrollingWrapper />
     </ThemeProvider>
+  );
+}
+
+function SmoothScrollingWrapper() {
+  return (
+    <SmoothScrolling>
+      <AppContent />
+    </SmoothScrolling>
   );
 }
