@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import Hero from './components/Hero';
 import About from './components/About';
+import StatsCounter from './components/StatsCounter';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
@@ -75,6 +76,7 @@ function AppContent() {
       <main>
         <Hero />
         <About />
+        <StatsCounter />
         <Skills />
         <Projects />
         <Experience />

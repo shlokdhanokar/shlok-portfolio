@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   SiPython, SiCplusplus, SiJavascript, SiTypescript, SiReact, SiFlask,
   SiNodedotjs, SiTensorflow, SiOpencv, SiMongodb, SiMysql, SiGit,
@@ -103,9 +104,13 @@ function SkillPill({ skill }: { skill: SkillItem }) {
 }
 
 export default function Skills() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const orbY = useTransform(scrollYProgress, [0, 1], [-40, 60]);
+
   return (
-    <section id="skills" className="section-padding relative overflow-hidden">
-      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-primary-600/5 rounded-full blur-[150px]" />
+    <section id="skills" ref={sectionRef} className="section-padding relative overflow-hidden">
+      <motion.div style={{ y: orbY }} className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-primary-600/5 rounded-full blur-[150px]" />
 
       <div className="w-full max-w-[1600px] mx-auto relative z-10">
         {/* Header */}
@@ -148,10 +153,10 @@ export default function Skills() {
           {categories.map((cat, catIndex) => (
             <motion.div
               key={cat.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: catIndex * 0.08 }}
+              transition={{ duration: 0.6, delay: catIndex * 0.12, ease: [0.22, 1, 0.36, 1] }}
               className="glass-card glass-card-hover rounded-2xl p-6 group"
             >
               {/* Category header */}

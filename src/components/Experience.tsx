@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiBriefcase, FiArrowRight, FiCalendar } from 'react-icons/fi';
 
 const techLogos: Record<string, string> = {
@@ -39,10 +40,14 @@ const experiences: ExperienceItem[] = [
 ];
 
 export default function Experience() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const orbY = useTransform(scrollYProgress, [0, 1], [-50, 70]);
+
   return (
-    <section id="experience" className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-accent-500/5 rounded-full blur-[150px]" />
+    <section id="experience" ref={sectionRef} className="section-padding relative overflow-hidden">
+      {/* Background — parallax */}
+      <motion.div style={{ y: orbY }} className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-accent-500/5 rounded-full blur-[150px]" />
 
       <div className="w-full max-w-[1600px] mx-auto relative z-10">
         <motion.div
@@ -69,10 +74,10 @@ export default function Experience() {
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.company}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 50, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.7, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="relative flex flex-row gap-0 mb-12"
             >
               {/* Timeline dot */}

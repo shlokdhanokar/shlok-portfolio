@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FiArrowRight, FiGithub, FiLinkedin, FiMail, FiDownload } from 'react-icons/fi';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { FiArrowRight, FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
 import { SiLeetcode, SiCodechef, SiDuolingo } from 'react-icons/si';
+import ResumeViewer from './ResumeViewer';
 
 const roles = [
   'AI/ML Engineer',
@@ -14,6 +15,14 @@ export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showResume, setShowResume] = useState(false);
+
+  // Parallax
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const gridY = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -43,14 +52,18 @@ export default function Hero() {
   return (
     <section
       id="hero"
+      ref={sectionRef}
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 grid-bg opacity-30" />
+      {/* Subtle grid background — parallax */}
+      <motion.div style={{ y: gridY }} className="absolute inset-0 grid-bg opacity-30" />
 
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-primary-600/10 rounded-full blur-[150px] pointer-events-none z-0" />
-      <div className="absolute bottom-1/3 -right-48 w-[400px] h-[400px] bg-accent-500/8 rounded-full blur-[150px] pointer-events-none z-0" />
+      {/* Gradient orbs — parallax */}
+      <motion.div style={{ y: orbY1 }} className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-primary-600/10 rounded-full blur-[150px] pointer-events-none z-0" />
+      <motion.div style={{ y: orbY2 }} className="absolute bottom-1/3 -right-48 w-[400px] h-[400px] bg-accent-500/8 rounded-full blur-[150px] pointer-events-none z-0" />
+
+      {/* Resume Viewer Modal */}
+      <ResumeViewer isOpen={showResume} onClose={() => setShowResume(false)} />
 
       {/* Full-width container */}
       <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 xl:px-20 pt-28">
@@ -136,14 +149,13 @@ export default function Hero() {
               <a href="#contact" className="btn-secondary text-white text-base !px-8 !py-4">
                 Contact Me
               </a>
-              <a
-                href="/Shlok_Resume.pdf"
-                download="Shlok_Dhanokar_Resume.pdf"
+              <button
+                onClick={() => setShowResume(true)}
                 className="btn-secondary text-white group text-base !px-8 !py-4"
               >
-                <FiDownload size={16} className="group-hover:animate-bounce" />
+                <FiFileText size={16} className="group-hover:scale-110 transition-transform" />
                 Resume
-              </a>
+              </button>
             </motion.div>
 
             {/* Social links — HIGHLIGHTED */}

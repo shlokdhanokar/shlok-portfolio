@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiMapPin, FiBookOpen, FiCode, FiCalendar } from 'react-icons/fi';
 
 const highlights = [
@@ -9,10 +10,14 @@ const highlights = [
 ];
 
 export default function About() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const orbY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
+
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-500/5 rounded-full blur-[150px]" />
+    <section id="about" ref={sectionRef} className="section-padding relative overflow-hidden">
+      {/* Background accent — parallax */}
+      <motion.div style={{ y: orbY }} className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-500/5 rounded-full blur-[150px]" />
 
       <div className="w-full max-w-[1600px] mx-auto relative z-10">
         <motion.div
@@ -30,10 +35,10 @@ export default function About() {
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-20 mt-16 items-start">
           {/* Profile image area - Expanded to decouple badges */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -60, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-2"
           >
             <div className="flex flex-col items-center sm:items-start md:flex-row lg:flex-col gap-6">
@@ -80,10 +85,10 @@ export default function About() {
 
           {/* Text content */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-3 space-y-6"
           >
             <p className="text-dark-300 text-lg leading-relaxed">

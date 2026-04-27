@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiGithub, FiTrendingUp } from 'react-icons/fi';
 
 const techLogos: Record<string, string> = {
@@ -215,21 +216,26 @@ const otherProjects: OtherProject[] = [
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.2 },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: (i: number) => ({ opacity: 0, x: i % 2 === 0 ? -60 : 60, y: 30 }),
+  visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export default function Projects() {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [-50, 80]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], [40, -40]);
+
   return (
-    <section id="projects" className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-600/5 rounded-full blur-[150px]" />
-      <div className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-accent-500/5 rounded-full blur-[150px]" />
+    <section id="projects" ref={sectionRef} className="section-padding relative overflow-hidden">
+      {/* Background — parallax */}
+      <motion.div style={{ y: orbY1 }} className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-600/5 rounded-full blur-[150px]" />
+      <motion.div style={{ y: orbY2 }} className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-accent-500/5 rounded-full blur-[150px]" />
 
       <div className="w-full max-w-[1600px] mx-auto relative z-10">
         <motion.div
@@ -258,6 +264,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
+              custom={index}
               variants={cardVariants}
               className="group relative"
             >

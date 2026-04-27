@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import { FiDownload, FiSun, FiMoon } from 'react-icons/fi';
+import { FiFileText, FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from '../context/ThemeContext';
+import ResumeViewer from './ResumeViewer';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -16,6 +17,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [showResume, setShowResume] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -99,15 +101,17 @@ export default function Navbar() {
               >
                 {theme === 'dark' ? <FiSun size={16} /> : <FiMoon size={16} />}
               </button>
-              <a
-                href="/Shlok_Resume.pdf"
-                download="Shlok_Dhanokar_Resume.pdf"
+              <button
+                onClick={() => setShowResume(true)}
                 className="ml-2 btn-primary text-white text-sm !py-2.5 !px-5 group"
               >
-                <FiDownload size={14} className="group-hover:animate-bounce" />
+                <FiFileText size={14} className="group-hover:scale-110 transition-transform" />
                 Resume
-              </a>
+              </button>
             </div>
+
+            {/* Resume Viewer Modal */}
+            <ResumeViewer isOpen={showResume} onClose={() => setShowResume(false)} />
 
             {/* Mobile menu button */}
             <button
@@ -164,15 +168,13 @@ export default function Navbar() {
                     {link.name}
                   </motion.a>
                 ))}
-                <a
-                  href="/Shlok_Resume.pdf"
-                  download="Shlok_Dhanokar_Resume.pdf"
-                  onClick={() => setMobileOpen(false)}
-                  className="btn-primary text-white text-sm mt-4 justify-center"
+                <button
+                  onClick={() => { setMobileOpen(false); setShowResume(true); }}
+                  className="btn-primary text-white text-sm mt-4 justify-center w-full"
                 >
-                  <FiDownload size={14} />
-                  Download Resume
-                </a>
+                  <FiFileText size={14} />
+                  View Resume
+                </button>
               </div>
             </motion.div>
           </motion.div>
