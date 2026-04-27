@@ -110,9 +110,6 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Resume Viewer Modal */}
-            <ResumeViewer isOpen={showResume} onClose={() => setShowResume(false)} />
-
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -180,6 +177,9 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Resume Viewer Modal — placed outside nav for correct fixed positioning */}
+      <ResumeViewer isOpen={showResume} onClose={() => setShowResume(false)} />
     </>
   );
 }
