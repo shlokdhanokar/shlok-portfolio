@@ -1,5 +1,15 @@
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiDownload, FiExternalLink } from 'react-icons/fi';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
+// Set up the worker for react-pdf (Vite compatible)
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 interface ResumeViewerProps {
   isOpen: boolean;
@@ -7,6 +17,24 @@ interface ResumeViewerProps {
 }
 
 export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
+  const [numPages, setNumPages] = useState<number>();
+  const [width, setWidth] = useState(800);
+
+  useEffect(() => {
+    // Responsive width for the PDF
+    const updateWidth = () => {
+      const modalWidth = Math.min(window.innerWidth - 64, 1000);
+      setWidth(modalWidth);
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
+  function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
+    setNumPages(numPages);
+  }
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -68,14 +96,29 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
               </div>
             </div>
 
-            {/* PDF Embed */}
-            <div className="flex-1 bg-[#1a1a2e]">
-              <iframe
-                src="/Shlok_Resume.pdf"
-                title="Shlok Dhanokar Resume"
-                className="w-full h-full border-0"
-                style={{ minHeight: '100%' }}
-              />
+            {/* PDF Embed using react-pdf (allows custom cursor to work) */}
+            <div className="flex-1 bg-[#1a1a2e] overflow-y-auto flex justify-center py-8">
+              <Document
+                file="/Shlok_Resume.pdf"
+                onLoadSuccess={onDocumentLoadSuccess}
+                loading={
+                  <div className="flex flex-col items-center justify-center h-64 gap-4">
+                    <div className="w-8 h-8 border-2 border-primary-500/30 border-t-primary-500 rounded-full animate-spin" />
+                    <span className="text-dark-400 text-sm">Loading PDF...</span>
+                  </div>
+                }
+              >
+                {Array.from(new Array(numPages), (el, index) => (
+                  <div key={`page_${index + 1}`} className="mb-8 rounded-xl overflow-hidden shadow-2xl">
+                    <Page 
+                      pageNumber={index + 1} 
+                      width={width}
+                      renderTextLayer={true}
+                      renderAnnotationLayer={true}
+                    />
+                  </div>
+                ))}
+              </Document>
             </div>
           </motion.div>
         </>

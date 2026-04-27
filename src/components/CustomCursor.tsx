@@ -26,10 +26,11 @@ export default function CustomCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      
       // Check if hovering over clickable elements
       if (
-        target.tagName.toLowerCase() === 'a' ||
-        target.tagName.toLowerCase() === 'button' ||
+        target.tagName?.toLowerCase() === 'a' ||
+        target.tagName?.toLowerCase() === 'button' ||
         target.closest('a') ||
         target.closest('button') ||
         target.classList.contains('cursor-pointer')
