@@ -21,6 +21,13 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
   const [width, setWidth] = useState(800);
 
   useEffect(() => {
+    // Lock body scroll when modal is open
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
     // Responsive width for the PDF
     const updateWidth = () => {
       const modalWidth = Math.min(window.innerWidth - 64, 1000);
@@ -28,8 +35,12 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
     };
     updateWidth();
     window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
-  }, []);
+    
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
@@ -97,7 +108,11 @@ export default function ResumeViewer({ isOpen, onClose }: ResumeViewerProps) {
             </div>
 
             {/* PDF Embed using react-pdf (allows custom cursor to work) */}
-            <div className="flex-1 bg-[#1a1a2e] overflow-y-auto flex justify-center py-8">
+            <div 
+              className="flex-1 bg-[#1a1a2e] overflow-y-auto flex justify-center py-8"
+              data-lenis-prevent="true"
+              onWheel={(e) => e.stopPropagation()}
+            >
               <Document
                 file="/Shlok_Resume.pdf"
                 onLoadSuccess={onDocumentLoadSuccess}
