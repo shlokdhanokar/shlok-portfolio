@@ -254,7 +254,7 @@ export default function Hero() {
                     <SiLeetcode size={20} className="text-[#FFA116]" />
                   </motion.div>
                   <div>
-                    <p className="text-[#FFA116] font-bold text-sm leading-tight">{streaks.leetcode}+ days</p>
+                    <p className="text-[#FFA116] font-bold text-sm leading-tight whitespace-nowrap">{streaks.leetcode}+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">LeetCode Streak</p>
                   </div>
                   <FiArrowRight size={14} className="text-[#FFA116]/40 group-hover:text-[#FFA116] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />
@@ -274,7 +274,7 @@ export default function Hero() {
                     <SiCodechef size={20} className="text-[#56C5C5]" />
                   </motion.div>
                   <div>
-                    <p className="text-[#56C5C5] font-bold text-sm leading-tight">{streaks.codechef}+ days</p>
+                    <p className="text-[#56C5C5] font-bold text-sm leading-tight whitespace-nowrap">{streaks.codechef}+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">CodeChef Streak</p>
                   </div>
                   <FiArrowRight size={14} className="text-[#56C5C5]/40 group-hover:text-[#56C5C5] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />
@@ -294,7 +294,7 @@ export default function Hero() {
                     <SiDuolingo size={20} className="text-[#58CC02]" />
                   </motion.div>
                   <div>
-                    <p className="text-[#58CC02] font-bold text-sm leading-tight">{streaks.duolingo}+ days</p>
+                    <p className="text-[#58CC02] font-bold text-sm leading-tight whitespace-nowrap">{streaks.duolingo}+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">Duolingo 🇯🇵 Japanese</p>
                   </div>
                   <FiArrowRight size={14} className="text-[#58CC02]/40 group-hover:text-[#58CC02] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />
