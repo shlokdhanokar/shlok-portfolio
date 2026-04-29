@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiArrowRight, FiGithub, FiLinkedin, FiMail, FiFileText } from 'react-icons/fi';
 import { SiLeetcode, SiCodechef, SiDuolingo } from 'react-icons/si';
 import ResumeViewer from './ResumeViewer';
+import { getStreaks } from '../utils/streaks';
 
 const roles = [
   'AI/ML Engineer',
@@ -16,6 +17,7 @@ export default function Hero() {
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [showResume, setShowResume] = useState(false);
+  const streaks = useMemo(() => getStreaks(), []);
 
   // Parallax
   const sectionRef = useRef(null);
@@ -252,7 +254,7 @@ export default function Hero() {
                     <SiLeetcode size={20} className="text-[#FFA116]" />
                   </motion.div>
                   <div>
-                    <p className="text-[#FFA116] font-bold text-sm leading-tight">320+ days</p>
+                    <p className="text-[#FFA116] font-bold text-sm leading-tight">{streaks.leetcode}+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">LeetCode Streak</p>
                   </div>
                   <FiArrowRight size={14} className="text-[#FFA116]/40 group-hover:text-[#FFA116] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />
@@ -272,7 +274,7 @@ export default function Hero() {
                     <SiCodechef size={20} className="text-[#56C5C5]" />
                   </motion.div>
                   <div>
-                    <p className="text-[#56C5C5] font-bold text-sm leading-tight">268+ days</p>
+                    <p className="text-[#56C5C5] font-bold text-sm leading-tight">{streaks.codechef}+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">CodeChef Streak</p>
                   </div>
                   <FiArrowRight size={14} className="text-[#56C5C5]/40 group-hover:text-[#56C5C5] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />
@@ -292,7 +294,7 @@ export default function Hero() {
                     <SiDuolingo size={20} className="text-[#58CC02]" />
                   </motion.div>
                   <div>
-                    <p className="text-[#58CC02] font-bold text-sm leading-tight">136+ days</p>
+                    <p className="text-[#58CC02] font-bold text-sm leading-tight">{streaks.duolingo}+ days</p>
                     <p className="text-dark-400 text-[10px] uppercase tracking-wider">Duolingo 🇯🇵 Japanese</p>
                   </div>
                   <FiArrowRight size={14} className="text-[#58CC02]/40 group-hover:text-[#58CC02] group-hover:translate-x-0.5 transition-all duration-300 ml-1" />

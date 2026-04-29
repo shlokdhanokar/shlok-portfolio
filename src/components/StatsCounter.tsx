@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FiCode, FiGitCommit, FiZap, FiTrendingUp } from 'react-icons/fi';
+import { getStreaks } from '../utils/streaks';
 
 interface StatItem {
   label: string;
@@ -11,40 +12,43 @@ interface StatItem {
   gradient: string;
 }
 
-const stats: StatItem[] = [
-  {
-    label: 'Projects Built',
-    value: 12,
-    suffix: '+',
-    icon: <FiCode size={22} />,
-    color: '#3b8fff',
-    gradient: 'from-blue-500/20 to-cyan-500/20',
-  },
-  {
-    label: 'LeetCode Streak',
-    value: 320,
-    suffix: '+',
-    icon: <FiTrendingUp size={22} />,
-    color: '#FFA116',
-    gradient: 'from-orange-500/20 to-yellow-500/20',
-  },
-  {
-    label: 'GitHub Contributions',
-    value: 500,
-    suffix: '+',
-    icon: <FiGitCommit size={22} />,
-    color: '#8b5cf6',
-    gradient: 'from-violet-500/20 to-purple-500/20',
-  },
-  {
-    label: 'Technologies',
-    value: 28,
-    suffix: '+',
-    icon: <FiZap size={22} />,
-    color: '#06b6d4',
-    gradient: 'from-cyan-500/20 to-teal-500/20',
-  },
-];
+function getStats(): StatItem[] {
+  const streaks = getStreaks();
+  return [
+    {
+      label: 'Projects Built',
+      value: 12,
+      suffix: '+',
+      icon: <FiCode size={22} />,
+      color: '#3b8fff',
+      gradient: 'from-blue-500/20 to-cyan-500/20',
+    },
+    {
+      label: 'LeetCode Streak',
+      value: streaks.leetcode,
+      suffix: '+',
+      icon: <FiTrendingUp size={22} />,
+      color: '#FFA116',
+      gradient: 'from-orange-500/20 to-yellow-500/20',
+    },
+    {
+      label: 'GitHub Contributions',
+      value: 500,
+      suffix: '+',
+      icon: <FiGitCommit size={22} />,
+      color: '#8b5cf6',
+      gradient: 'from-violet-500/20 to-purple-500/20',
+    },
+    {
+      label: 'Technologies',
+      value: 28,
+      suffix: '+',
+      icon: <FiZap size={22} />,
+      color: '#06b6d4',
+      gradient: 'from-cyan-500/20 to-teal-500/20',
+    },
+  ];
+}
 
 function AnimatedCounter({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
   const [count, setCount] = useState(0);
@@ -86,6 +90,7 @@ function AnimatedCounter({ target, suffix, inView }: { target: number; suffix: s
 export default function StatsCounter() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const stats = getStats();
 
   return (
     <section className="relative py-16 md:py-20 overflow-hidden">
