@@ -22,7 +22,7 @@ const stats: StatItem[] = [
   },
   {
     label: 'LeetCode Streak',
-    value: 300,
+    value: 320,
     suffix: '+',
     icon: <FiTrendingUp size={22} />,
     color: '#FFA116',
