@@ -121,6 +121,15 @@ const achievements: AchievementItem[] = [
     fileType: 'image',
   },
   {
+    icon: '🌋',
+    badge: '365 Days',
+    badgeColor: 'bg-red-500/10 text-red-400 border-red-500/20',
+    title: '365-Day LeetCode Badge',
+    description: 'Completed a full year of daily LeetCode problem-solving, achieving the elite 365-day annual badge for extreme dedication to algorithmic excellence and mastery.',
+    file: '/achievements/365 days leetcode.png',
+    fileType: 'image',
+  },
+  {
     icon: '🦉',
     badge: '100 Days',
     badgeColor: 'bg-[#58CC02]/10 text-[#58CC02] border-[#58CC02]/20',
