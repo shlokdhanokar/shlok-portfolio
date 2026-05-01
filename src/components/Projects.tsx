@@ -84,7 +84,7 @@ const projects: ProjectData[] = [
     subtitle: 'Agentic AI Document Verification',
     description:
       'A production-grade agentic AI pipeline for automated bank KYC document verification using Azure cloud services, LangChain orchestration, and intelligent data extraction.',
-    tech: ['Azure', 'LangChain', 'Flask', 'React', 'MongoDB'],
+    tech: ['Azure', 'LangChain', 'Flask', 'React', 'Azure Blob Storage'],
     metrics: [
       { label: 'Docs Processed', value: '500+' },
       { label: 'Accuracy', value: '98%' },
@@ -96,7 +96,7 @@ const projects: ProjectData[] = [
       overview: 'A massive pain point in modern banking is the manual verification of KYC (Know Your Customer) documents. This project aimed to automate the entire extraction and validation pipeline using Agentic AI workflows.',
       challenge: 'Traditional OCR fails when documents are rotated, smudged, or use different formats (e.g., old vs. new passports). We needed a system capable of semantic understanding, not just blind text extraction.',
       solution: 'I built an orchestration pipeline using LangChain. First, Azure Document Intelligence extracts raw text and layout. Then, an LLM agent analyzes the text contextually to map entities (Name, DoB, ID Number) and flag inconsistencies or signs of tampering.',
-      architecture: 'React Frontend -> Flask REST API -> LangChain Orchestrator -> Azure Document Intelligence + OpenAI LLMs -> MongoDB for secure storage.',
+      architecture: 'React Frontend -> Flask REST API -> LangChain Orchestrator -> Azure Document Intelligence + OpenAI LLMs -> Azure Blob Storage for secure storage.',
       keyFeatures: [
         'Multi-agent workflow for extraction, validation, and anomaly detection',
         'Secure API built with Flask and deployed on Azure',

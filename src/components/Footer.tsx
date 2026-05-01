@@ -35,10 +35,19 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Copyright */}
-          <p className="text-dark-500 text-xs flex items-center gap-1">
-            Built with <FiHeart size={10} className="text-red-400" /> © {new Date().getFullYear()} Shlok Dhanokar
-          </p>
+          {/* Copyright & Visitor Counter */}
+          <div className="flex flex-col items-center md:items-end gap-3">
+            <p className="text-dark-500 text-xs flex items-center gap-1">
+              Built with <FiHeart size={10} className="text-red-400" /> © {new Date().getFullYear()} Shlok Dhanokar
+            </p>
+            <a href="https://visitorbadge.io/status?path=shlokdhanokar.portfolio" target="_blank" rel="noreferrer" title="Visitor Count">
+              <img 
+                src="https://api.visitorbadge.io/api/visitors?path=shlokdhanokar.portfolio&countColor=%233b82f6" 
+                alt="Visitor Count" 
+                className="h-[18px] opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
