@@ -1,6 +1,6 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { FiGithub, FiTrendingUp } from 'react-icons/fi';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { FiGithub, FiTrendingUp, FiX, FiTarget, FiTool, FiBox, FiCheckCircle, FiExternalLink } from 'react-icons/fi';
 
 const techLogos: Record<string, string> = {
   Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
@@ -43,6 +43,13 @@ interface ProjectData {
   github: string;
   gradient: string;
   iconImg?: string;
+  caseStudy?: {
+    overview: string;
+    challenge: string;
+    solution: string;
+    architecture: string;
+    keyFeatures: string[];
+  };
 }
 
 const projects: ProjectData[] = [
@@ -59,6 +66,18 @@ const projects: ProjectData[] = [
     github: 'https://github.com/shlokdhanokar/safestep',
     gradient: 'from-blue-500 to-cyan-500',
     iconImg: '/logo-safestep.png',
+    caseStudy: {
+      overview: 'SafeStep was designed to give visually impaired individuals a reliable, real-time sense of their surroundings without requiring expensive specialized hardware.',
+      challenge: 'Deploying deep learning models (YOLO, Depth Estimation) on resource-constrained portable devices while maintaining a high frame rate and low latency. The feedback mechanism also needed to be intuitive and non-overwhelming for the user.',
+      solution: 'I optimized a custom TensorFlow Lite model for edge deployment and paired it with OpenCV for efficient frame processing. For feedback, I implemented a prioritized haptic/audio alert system that only triggers for immediate collision threats.',
+      architecture: 'Camera Input -> Frame Resizing -> TensorFlow Lite Object Detection & Depth Estimation -> Risk Assessment Logic -> Text-to-Speech / Haptic Engine.',
+      keyFeatures: [
+        'Real-time object detection and classification',
+        'Monocular depth estimation to calculate distance to obstacles',
+        'Low-latency haptic and audio feedback system',
+        'Optimized for battery-powered edge devices',
+      ],
+    },
   },
   {
     title: 'Bank KYC Platform',
@@ -73,6 +92,18 @@ const projects: ProjectData[] = [
     github: 'https://github.com/shlokdhanokar/Agentic-AI---KYC-Automation',
     gradient: 'from-violet-500 to-purple-500',
     iconImg: '/logo-kyc.png',
+    caseStudy: {
+      overview: 'A massive pain point in modern banking is the manual verification of KYC (Know Your Customer) documents. This project aimed to automate the entire extraction and validation pipeline using Agentic AI workflows.',
+      challenge: 'Traditional OCR fails when documents are rotated, smudged, or use different formats (e.g., old vs. new passports). We needed a system capable of semantic understanding, not just blind text extraction.',
+      solution: 'I built an orchestration pipeline using LangChain. First, Azure Document Intelligence extracts raw text and layout. Then, an LLM agent analyzes the text contextually to map entities (Name, DoB, ID Number) and flag inconsistencies or signs of tampering.',
+      architecture: 'React Frontend -> Flask REST API -> LangChain Orchestrator -> Azure Document Intelligence + OpenAI LLMs -> MongoDB for secure storage.',
+      keyFeatures: [
+        'Multi-agent workflow for extraction, validation, and anomaly detection',
+        'Secure API built with Flask and deployed on Azure',
+        '98% accuracy in entity extraction across diverse document formats',
+        'Scalable microservice architecture',
+      ],
+    },
   },
   {
     title: 'MailFlow',
@@ -87,6 +118,18 @@ const projects: ProjectData[] = [
     github: 'https://github.com/shlokdhanokar/MAILFLOW',
     gradient: 'from-emerald-500 to-teal-500',
     iconImg: '/logo-mailflow.png',
+    caseStudy: {
+      overview: 'Customer support teams spend countless hours sorting incoming emails. MailFlow automates triage by classifying emails into actionable categories and generating contextual draft responses.',
+      challenge: 'General-purpose LLMs were too slow and expensive for simple classification routing. We needed a fast, domain-specific classifier combined with a generative model for the actual response drafting.',
+      solution: 'I fine-tuned a BERT model specifically for intent classification (fast, cheap inference). Once an email is categorized (e.g., "Refund Request"), it is passed to the Gemini API along with specific prompt templates to generate a polite, accurate response draft.',
+      architecture: 'IMAP Integration -> BERT Classifier -> Priority Queue -> Gemini Generative Layer -> SMTP Reply Queue.',
+      keyFeatures: [
+        'Custom fine-tuned BERT model for 92% accurate intent classification',
+        'Context-aware response generation using Google Gemini',
+        'Asynchronous processing pipeline via Flask and Celery',
+        'Reduced manual triage time by 70%',
+      ],
+    },
   },
 ];
 
@@ -225,7 +268,176 @@ const cardVariants = {
   visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
+// ─── Project Modal ────────────────────────────────────────────────────────────
+function ProjectModal({
+  project,
+  onClose,
+}: {
+  project: ProjectData;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    // Lock body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        key="project-modal-backdrop"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8"
+        onClick={onClose}
+      >
+        {/* Backdrop blur */}
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
+
+        {/* Modal Content */}
+        <motion.div
+          key="project-modal-content"
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 w-full max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden glass-card border border-white/10 shadow-2xl flex flex-col"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] flex-shrink-0 bg-white/[0.02]">
+            <div className="flex items-center gap-4">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer hover:bg-red-400 transition-colors" onClick={onClose} />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+              </div>
+              <h3 className="text-white font-bold text-lg hidden sm:block">{project.title} Case Study</h3>
+            </div>
+            <div className="flex items-center gap-3">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all"
+              >
+                <FiGithub size={14} />
+                Source
+              </a>
+              <button
+                onClick={onClose}
+                className="p-1.5 rounded-lg text-dark-400 hover:text-white hover:bg-white/10 transition-all"
+              >
+                <FiX size={18} />
+              </button>
+            </div>
+          </div>
+
+          {/* Scrollable Body */}
+          <div 
+            className="flex-1 overflow-y-auto bg-[#0b0b14]/50 custom-scrollbar p-6 md:p-10"
+            data-lenis-prevent="true"
+            onWheel={(e) => e.stopPropagation()}
+          >
+            <div className="max-w-3xl mx-auto space-y-12">
+              
+              {/* Header Image & Title */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-24 h-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-4 mb-6 shadow-xl">
+                  <img src={project.iconImg} alt={project.title} className="w-full h-full object-contain" />
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">{project.title}</h2>
+                <p className="text-lg text-primary-400 font-medium mb-6">{project.subtitle}</p>
+                <p className="text-dark-300 text-base md:text-lg leading-relaxed max-w-2xl">
+                  {project.caseStudy?.overview}
+                </p>
+              </div>
+
+              {/* Grid sections */}
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Challenge */}
+                <div className="glass-card rounded-2xl p-6 border border-white/5">
+                  <div className="flex items-center gap-3 mb-4 text-red-400">
+                    <FiTarget size={20} />
+                    <h3 className="text-white font-bold text-xl">The Challenge</h3>
+                  </div>
+                  <p className="text-dark-300 leading-relaxed text-sm">
+                    {project.caseStudy?.challenge}
+                  </p>
+                </div>
+
+                {/* Solution */}
+                <div className="glass-card rounded-2xl p-6 border border-white/5">
+                  <div className="flex items-center gap-3 mb-4 text-emerald-400">
+                    <FiTool size={20} />
+                    <h3 className="text-white font-bold text-xl">The Solution</h3>
+                  </div>
+                  <p className="text-dark-300 leading-relaxed text-sm">
+                    {project.caseStudy?.solution}
+                  </p>
+                </div>
+              </div>
+
+              {/* Architecture */}
+              <div className="glass-card rounded-2xl p-6 md:p-8 border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent">
+                <div className="flex items-center gap-3 mb-6 text-blue-400">
+                  <FiBox size={24} />
+                  <h3 className="text-white font-bold text-2xl">Architecture</h3>
+                </div>
+                <div className="p-4 rounded-xl bg-black/40 border border-white/5 font-mono text-sm text-dark-300 leading-loose overflow-x-auto">
+                  {project.caseStudy?.architecture.split('->').map((step, i, arr) => (
+                    <span key={i}>
+                      <span className="text-primary-400">{step.trim()}</span>
+                      {i < arr.length - 1 && <span className="text-dark-500 mx-2">→</span>}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Key Features */}
+              <div>
+                <h3 className="text-white font-bold text-2xl mb-6 flex items-center gap-3">
+                  <FiCheckCircle className="text-primary-500" />
+                  Key Features
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {project.caseStudy?.keyFeatures.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 shrink-0" />
+                      <p className="text-dark-300 text-sm leading-relaxed">{feature}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tech Stack */}
+              <div>
+                <h3 className="text-white font-bold text-xl mb-4 text-center">Tech Stack Used</h3>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {project.tech.map((t) => (
+                    <div key={t} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                      {techLogos[t] && <img src={techLogos[t]} alt={t} className="w-5 h-5 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />}
+                      <span className="text-white font-medium text-sm">{t}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+  
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
   const orbY1 = useTransform(scrollYProgress, [0, 1], [-50, 80]);
@@ -236,6 +448,14 @@ export default function Projects() {
       {/* Background — parallax */}
       <motion.div style={{ y: orbY1 }} className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-primary-600/5 rounded-full blur-[150px]" />
       <motion.div style={{ y: orbY2 }} className="absolute top-1/3 left-0 w-[400px] h-[400px] bg-accent-500/5 rounded-full blur-[150px]" />
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <ProjectModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+        />
+      )}
 
       <div className="w-full max-w-[1600px] mx-auto relative z-10">
         <motion.div
@@ -319,16 +539,26 @@ export default function Projects() {
                     </div>
 
                     {/* Action buttons */}
-                    <div className="flex gap-3">
+                    <div className="flex flex-wrap gap-3 mt-auto">
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-dark-300 hover:text-white hover:bg-white/10 hover:border-primary-500/30 transition-all duration-300 font-medium"
+                        className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm text-dark-300 hover:text-white hover:bg-white/10 hover:border-primary-500/30 transition-all duration-300 font-medium"
                       >
                         <FiGithub size={15} />
                         Source Code
                       </a>
+                      
+                      {project.caseStudy && (
+                        <button
+                          onClick={() => setSelectedProject(project)}
+                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary-600 text-white text-sm font-medium hover:bg-primary-500 transition-all duration-300 shadow-lg shadow-primary-500/20"
+                        >
+                          <FiExternalLink size={15} />
+                          View Case Study
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
