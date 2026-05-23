@@ -13,8 +13,7 @@
 - [Installation & Development](#-installation--development)
 - [License](#-license)
 
----
-
+--
 ## ⚙️ Tech Stack
 
 - **Frontend:** React 18, TypeScript
