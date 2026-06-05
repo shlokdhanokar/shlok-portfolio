@@ -44,9 +44,10 @@ export default function Footer() {
               <img 
                 src="https://api.visitorbadge.io/api/visitors?path=shlokdhanokar.portfolio&countColor=%233b82f6" 
                 alt="Visitor Count" 
-                className="h-[18px] opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                className="h-[18px] opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" 
               />
             </a>
+            <span className="text-sm text-white mt-1">250</span>
           </div>
         </div>
       </div>
