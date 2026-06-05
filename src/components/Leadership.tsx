@@ -213,6 +213,15 @@ const certifications: CertItem[] = [
     file: '/achievements/NPTEL cloud computing certificate.pdf',
     fileType: 'pdf',
   },
+  {
+    icon: '📡',
+    title: 'NPTEL Internet of Things (IoT)',
+    issuer: 'NPTEL — IIT',
+    color: 'from-blue-500/20 to-indigo-500/20',
+    borderColor: 'border-blue-500/20',
+    file: '/achievements/NPTEL IOT Certificate.pdf',
+    fileType: 'pdf',
+  },
 ];
 
 // ─── Preview Modal ────────────────────────────────────────────────────────────
