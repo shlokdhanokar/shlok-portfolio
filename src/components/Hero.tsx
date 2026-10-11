@@ -133,7 +133,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.35 }}
               className="text-dark-400 text-lg leading-relaxed mb-10 max-w-xl"
             >
-              Pre-final year CSE student at VIT Bhopal, crafting production-grade AI solutions
+              Final-year CSE student at VIT Bhopal, crafting production-grade AI solutions
               — from computer vision to agentic workflows.
             </motion.p>
 
@@ -221,7 +221,7 @@ export default function Hero() {
               <div className="flex items-center gap-4 mt-8">
                 <div className="glass-card px-5 py-3 rounded-xl border border-white/[0.08] shadow-lg text-center">
                   <p className="text-[10px] text-dark-400 uppercase tracking-wider mb-0.5">CGPA</p>
-                  <p className="text-lg font-bold text-primary-400">8.20</p>
+                  <p className="text-lg font-bold text-primary-400">8.19</p>
                 </div>
                 <div className="glass-card px-5 py-3 rounded-xl border border-white/[0.08] shadow-lg text-center">
                   <p className="text-[10px] text-dark-400 uppercase tracking-wider mb-0.5">University</p>
@@ -229,7 +229,7 @@ export default function Hero() {
                 </div>
                 <div className="glass-card px-5 py-3 rounded-xl border border-white/[0.08] shadow-lg text-center">
                   <p className="text-[10px] text-dark-400 uppercase tracking-wider mb-0.5">Year</p>
-                  <p className="text-sm font-semibold text-accent-400">Pre-Final</p>
+                  <p className="text-sm font-semibold text-accent-400">Final Year</p>
                 </div>
               </div>
 

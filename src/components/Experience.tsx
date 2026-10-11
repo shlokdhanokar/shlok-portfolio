@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { FiBriefcase, FiArrowRight, FiCalendar } from 'react-icons/fi';
+import { FiBriefcase, FiArrowRight, FiCalendar, FiExternalLink } from 'react-icons/fi';
 
 const techLogos: Record<string, string> = {
   Azure: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
@@ -8,9 +8,21 @@ const techLogos: Record<string, string> = {
   Flask: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg',
   React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   MongoDB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
+  'MongoDB Atlas': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
   Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  FastAPI: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
+  PHP: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
+  HTML: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  CSS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+  JavaScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+  Pandas: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
   'Agentic AI': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
 };
+
+interface Metric {
+  value: string;
+  label: string;
+}
 
 interface ExperienceItem {
   role: string;
@@ -20,22 +32,105 @@ interface ExperienceItem {
   type: string;
   points: string[];
   tech: string[];
+  metrics?: Metric[];
+  link?: { label: string; url: string };
 }
+
+const metricColors = ['text-primary-400', 'text-accent-400', 'text-cyan-400'];
 
 const experiences: ExperienceItem[] = [
   {
-    role: 'AI Intern',
-    company: 'Coforge BPS',
-    duration: 'Recent',
-    dateRange: 'May 2025 – Jul 2025',
+    role: 'Data Science & AI Content Specialist Intern',
+    company: 'Accredian (FullStack Education Pvt. Ltd.)',
+    duration: 'Current',
+    dateRange: 'Sep 2026 – Mar 2027',
+    type: 'Internship · Remote',
+    points: [
+      "Working on data science and AI learning content for Accredian's professional education programs",
+    ],
+    tech: ['Python', 'Pandas', 'Generative AI', 'Machine Learning'],
+  },
+  {
+    role: 'Web Development & SEO Optimisation Intern',
+    company: 'The CarePal (Carepalz Internet Pvt. Ltd.)',
+    duration: 'Ongoing',
+    dateRange: 'Jul 2026 – Present',
+    type: 'Internship · Remote',
+    points: [
+      'Built and optimised responsive web pages to improve usability, performance and overall user experience',
+      'Developed CRM and user login interfaces connecting the CarePal mobile app and website',
+      'Implemented SEO strategies — on-page optimisation, keyword targeting, meta tags and content improvements',
+      'Analysed website performance and SEO metrics to support organic traffic growth',
+    ],
+    tech: ['HTML', 'CSS', 'JavaScript', 'SEO', 'CRM'],
+    link: { label: 'thecarepal.com', url: 'https://thecarepal.com/' },
+  },
+  {
+    role: 'PHP Web Developer Intern',
+    company: 'DivyaSangam',
+    duration: '5 months',
+    dateRange: 'May 2026 – Sep 2026',
     type: 'Internship',
     points: [
-      'Built an end-to-end KYC verification pipeline on Azure cloud infrastructure',
-      'Reduced manual verification effort by 60% through intelligent automation',
-      'Compressed document processing time from 48 hours to just 8 hours',
-      'Optimized API response latency by 30% via caching and async processing',
+      'Developed and maintained an online pooja booking, astrology booking and spiritual e-commerce platform',
+      'Built customer-facing features and internal systems — order and inventory management, WhatsApp integration and payment gateway',
+      'Improved user experience and operational efficiency across the platform',
     ],
-    tech: ['Azure', 'LangChain', 'Agentic AI', 'Flask', 'React', 'MongoDB', 'Python'],
+    tech: ['PHP', 'Full Stack', 'WhatsApp Integration', 'Payment Gateway', 'Order Management'],
+    link: { label: 'divyasangam.com', url: 'https://divyasangam.com/' },
+  },
+  {
+    role: 'AI Intern (AI Model Fine-tuning)',
+    company: 'SortMyPrep (ZKAP EdTech Services Pvt. Ltd.)',
+    duration: '3 months',
+    dateRange: 'May 2026 – Jul 2026',
+    type: 'Internship · Remote',
+    points: [
+      'Audited 10,000+ pages of educational content for a generative learning platform, removing 95% of symbol-transcription and maths-syntax errors',
+      'Built Python data pipelines turning raw unstructured data into 500+ standardised training files for LLM fine-tuning and retrieval',
+      'Validated OCR outputs, cleaned and structured extracted data, and checked AI-processed outputs against source files',
+      'Received a letter of recommendation from the Co-Founder & Director',
+    ],
+    tech: ['Python', 'OCR', 'Data Validation', 'Data Preprocessing', 'Data Annotation'],
+    metrics: [
+      { value: '10K+', label: 'Pages Audited' },
+      { value: '95%', label: 'Errors Removed' },
+      { value: '500+', label: 'Training Files' },
+    ],
+  },
+  {
+    role: 'Backend Intern',
+    company: 'Infoware India (The Infowarehouse)',
+    duration: '5 months',
+    dateRange: 'Apr 2026 – Sep 2026',
+    type: 'Internship · Remote',
+    points: [
+      'Built a multi-tenant Retrieval-Augmented Generation (RAG) engine so multiple organisations can run secure AI knowledge assistants on shared infrastructure',
+      'Implemented tenant-aware architecture with workspace isolation, role-based access control (RBAC) and secure document management',
+      'Worked on workflow automation, CRM software and integration architecture',
+    ],
+    tech: ['Python', 'FastAPI', 'Flask', 'MongoDB Atlas', 'RAG', 'RBAC'],
+    link: { label: 'RAG Engine live demo', url: 'https://multi-tenant-rag-engine.vercel.app/' },
+  },
+  {
+    role: 'AI/ML Intern',
+    company: 'Coforge BPS',
+    duration: '2 months',
+    dateRange: 'May 2025 – Jul 2025',
+    type: 'Internship · Pune, On-site',
+    points: [
+      'Built an end-to-end KYC verification pipeline on Microsoft Azure (Form Recognizer, Blob Storage, OpenAI) for 500+ documents with 98% extraction accuracy',
+      'Designed agentic AI workflows with LangChain and LangFlow, cutting manual processing time by 60% and verification turnaround from 48 hours to under 8',
+      'Delivered a React front end on Flask REST APIs and Azure Communication Services for real-time upload, status tracking and notifications',
+      'Reduced inference latency by 30% through batched API calls, caching and efficient Azure resource use',
+    ],
+    tech: ['Azure', 'LangChain', 'Agentic AI', 'Flask', 'React', 'Python'],
+    metrics: [
+      { value: '60%', label: 'Less Manual Work' },
+      { value: '6x', label: 'Faster Processing' },
+      { value: '30%', label: 'Lower Latency' },
+    ],
+    link: { label: 'KYC demo', url: 'https://agentic-ai-kyc-automation.vercel.app/' },
   },
 ];
 
@@ -62,7 +157,7 @@ export default function Experience() {
             Where I've <span className="gradient-text">Worked</span>
           </h2>
           <p className="section-subtitle mx-auto mt-4">
-            Gaining real-world experience building production AI systems
+            Six internships across GenAI, RAG, backend engineering and full-stack web development
           </p>
         </motion.div>
 
@@ -122,20 +217,16 @@ export default function Experience() {
                   </ul>
 
                   {/* Impact metrics */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-3 mb-4 md:mb-5">
-                    <div className="text-center p-2 md:p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                      <p className="text-primary-400 font-bold text-sm md:text-lg">60%</p>
-                      <p className="text-dark-400 text-[8px] md:text-[10px] uppercase tracking-wider">Less Manual Work</p>
+                  {exp.metrics && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-3 mb-4 md:mb-5">
+                      {exp.metrics.map((m, i) => (
+                        <div key={m.label} className="text-center p-2 md:p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+                          <p className={`${metricColors[i % metricColors.length]} font-bold text-sm md:text-lg`}>{m.value}</p>
+                          <p className="text-dark-400 text-[8px] md:text-[10px] uppercase tracking-wider">{m.label}</p>
+                        </div>
+                      ))}
                     </div>
-                    <div className="text-center p-2 md:p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                      <p className="text-accent-400 font-bold text-sm md:text-lg">6x</p>
-                      <p className="text-dark-400 text-[8px] md:text-[10px] uppercase tracking-wider">Faster Processing</p>
-                    </div>
-                    <div className="text-center p-2 md:p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                      <p className="text-cyan-400 font-bold text-sm md:text-lg">30%</p>
-                      <p className="text-dark-400 text-[8px] md:text-[10px] uppercase tracking-wider">Lower Latency</p>
-                    </div>
-                  </div>
+                  )}
 
                   {/* Tech stack with logos */}
                   <div className="flex flex-wrap gap-1.5 md:gap-2">
@@ -153,6 +244,18 @@ export default function Experience() {
                       </span>
                     ))}
                   </div>
+
+                  {exp.link && (
+                    <a
+                      href={exp.link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 mt-4 text-[10px] md:text-xs font-medium text-primary-400 hover:text-primary-300 transition-colors"
+                    >
+                      <FiExternalLink size={12} />
+                      {exp.link.label}
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

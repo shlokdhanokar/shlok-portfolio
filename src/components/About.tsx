@@ -6,7 +6,7 @@ const highlights = [
   { icon: <FiCode />, label: 'Focus', value: 'AI/ML & Backend' },
   { icon: <FiBookOpen />, label: 'Education', value: 'B.Tech CSE (AI & ML)' },
   { icon: <FiMapPin />, label: 'University', value: 'VIT Bhopal' },
-  { icon: <FiCalendar />, label: 'Year', value: 'Pre-Final Year' },
+  { icon: <FiCalendar />, label: 'Year', value: 'Final Year (2027)' },
 ];
 
 export default function About() {
@@ -66,7 +66,7 @@ export default function About() {
                   className="glass-card flex-1 px-5 py-3 rounded-xl border border-primary-500/20 shadow-xl"
                 >
                   <p className="text-[10px] text-dark-400 uppercase tracking-wider mb-0.5">CGPA</p>
-                  <p className="text-xl font-bold text-primary-400">8.20</p>
+                  <p className="text-xl font-bold text-primary-400">8.19</p>
                 </motion.div>
 
                 <motion.div
@@ -77,7 +77,7 @@ export default function About() {
                   className="glass-card flex-1 px-5 py-3 rounded-xl border border-accent-500/20 shadow-xl flex flex-col justify-center"
                 >
                   <p className="text-[10px] text-dark-400 uppercase tracking-wider mb-0.5">Status</p>
-                  <p className="text-sm font-semibold text-accent-400 leading-tight">Pre-Final Year</p>
+                  <p className="text-sm font-semibold text-accent-400 leading-tight">Final Year</p>
                 </motion.div>
               </div>
             </div>
@@ -92,7 +92,7 @@ export default function About() {
             className="lg:col-span-3 space-y-6"
           >
             <p className="text-dark-300 text-lg leading-relaxed">
-              I'm a <span className="text-white font-medium">pre-final year</span> Computer Science student at{' '}
+              I'm a <span className="text-white font-medium">final-year</span> Computer Science student at{' '}
               <span className="text-white font-medium">VIT Bhopal</span>, specializing in{' '}
               <span className="text-primary-400 font-medium">Artificial Intelligence & Machine Learning</span>.
               I build real-world, scalable systems that bridge the gap between cutting-edge AI
