@@ -173,17 +173,17 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.7, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex flex-row gap-0 mb-12"
+              className={`relative flex ${index % 2 === 1 ? 'flex-row-reverse' : 'flex-row'} gap-0 mb-12`}
             >
               {/* Timeline dot */}
               <div className="absolute left-1/2 -translate-x-1/2 top-8 z-10">
                 <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-primary-500 border-[3px] md:border-4 border-dark-950 shadow-lg shadow-primary-500/30" />
               </div>
 
-              {/* Duration - left side */}
-              <div className="w-1/2 text-right pr-5 md:pr-12">
+              {/* Duration - opposite the card */}
+              <div className={`w-1/2 ${index % 2 === 1 ? 'text-left pl-5 md:pl-12' : 'text-right pr-5 md:pr-12'}`}>
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: index % 2 === 1 ? 20 : -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
@@ -193,7 +193,7 @@ export default function Experience() {
                     <FiBriefcase size={12} className="hidden md:block" />
                     {exp.duration}
                   </span>
-                  <div className="flex items-center gap-1 md:gap-2 mt-2 md:mt-3 justify-end">
+                  <div className={`flex items-center gap-1 md:gap-2 mt-2 md:mt-3 ${index % 2 === 1 ? 'justify-start' : 'justify-end'}`}>
                     <FiCalendar className="text-dark-400 hidden md:block" size={13} />
                     <p className="text-dark-300 text-[10px] md:text-sm font-medium">{exp.dateRange}</p>
                   </div>
@@ -201,8 +201,8 @@ export default function Experience() {
                 </motion.div>
               </div>
 
-              {/* Content - right side */}
-              <div className="w-1/2 pl-5 md:pl-12">
+              {/* Content - alternates right / left */}
+              <div className={`w-1/2 ${index % 2 === 1 ? 'pr-5 md:pr-12' : 'pl-5 md:pl-12'}`}>
                 <div className="glass-card glass-card-hover p-4 md:p-6 rounded-2xl">
                   <h3 className="text-white font-bold text-sm md:text-xl mb-1">{exp.role}</h3>
                   <p className="text-primary-400 font-medium text-xs md:text-sm mb-3 md:mb-5">{exp.company}</p>
