@@ -100,6 +100,7 @@ const projects: ProjectData[] = [
       { label: 'Hardware', value: 'Webcam' },
     ],
     github: 'https://github.com/shlokdhanokar/SAFESTEP',
+    demo: 'https://shlokdhanokar.github.io/SAFESTEP/',
     gradient: 'from-blue-500 to-cyan-500',
     iconImg: '/logo-safestep.png',
     caseStudy: {
