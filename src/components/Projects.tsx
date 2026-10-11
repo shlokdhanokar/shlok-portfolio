@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { FiGithub, FiTrendingUp, FiX, FiTarget, FiTool, FiBox, FiCheckCircle, FiExternalLink } from 'react-icons/fi';
+import { FiGithub, FiTrendingUp, FiX, FiTarget, FiTool, FiBox, FiCheckCircle, FiExternalLink, FiPlay } from 'react-icons/fi';
 
 const techLogos: Record<string, string> = {
   Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
@@ -33,6 +33,11 @@ const techLogos: Record<string, string> = {
   BeautifulSoup: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
   'Twitter API': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg',
   'Raspberry Pi': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg',
+  FastAPI: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
+  MySQL: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+  Electron: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/electron/electron-original.svg',
+  'MongoDB Atlas': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
+  'Node.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
 };
 
 interface ProjectData {
@@ -42,6 +47,7 @@ interface ProjectData {
   tech: string[];
   metrics: { label: string; value: string }[];
   github: string;
+  demo?: string;
   gradient: string;
   iconImg?: string;
   caseStudy?: {
@@ -54,6 +60,35 @@ interface ProjectData {
 }
 
 const projects: ProjectData[] = [
+  {
+    title: 'Multi-Tenant RAG Engine',
+    subtitle: 'Enterprise-Grade, Media-Aware Retrieval-Augmented Generation',
+    description:
+      'A scalable RAG engine that serves many isolated knowledge bases from one deployment. Hybrid vector + lexical retrieval on MongoDB Atlas, grounded Gemini generation, multi-format ingestion and a live workspace that exposes every retrieval step.',
+    tech: ['Python', 'Flask', 'MongoDB Atlas', 'Gemini', 'OpenAI'],
+    metrics: [
+      { label: 'File Formats', value: '5' },
+      { label: 'LLM Providers', value: '3' },
+    ],
+    github: 'https://github.com/shlokdhanokar/MultiTenant-RAG-Engine',
+    demo: 'https://multi-tenant-rag-engine.vercel.app',
+    gradient: 'from-green-500 to-emerald-500',
+    iconImg: '/logo-rag.svg',
+    caseStudy: {
+      overview: 'A professional-grade RAG pipeline engineered to handle multiple distinct knowledge bases at once — a travel guide, a property agent and a hospital assistant can all run on the same engine, each with isolated data, its own guardrails and its own AI persona, with no code changes per tenant.',
+      challenge: 'Shared infrastructure makes tenant isolation hard: a large tenant can crowd a small one out of vector search results, PDF parsers attach images to the wrong sections, and pure dense retrieval misses exact identifiers like product codes, names and numbers.',
+      solution: 'Tenant isolation is enforced inside the MongoDB Atlas $vectorSearch stage with a native pre-filter. Candidates are re-ranked by blending semantic similarity with lexical overlap, and a "Physical-First" algorithm anchors each image to the text above it using Y-coordinates. Generation runs behind a strict grounding prompt that refuses, in the user\'s language, when the answer is not in the knowledge base.',
+      architecture: 'Upload (PDF / DOCX / PPTX / XLSX / Images) -> Format Dispatcher + OCR -> Hierarchical Chunking + Image Anchoring -> Gemini Embeddings -> MongoDB Atlas Vector Search (tenant pre-filter) -> Hybrid Re-rank -> Grounded LLM (Gemini / Groq / OpenAI).',
+      keyFeatures: [
+        'True multi-tenancy with strict project and knowledge-base boundaries',
+        'Hybrid retrieval: Gemini embeddings + lexical re-ranking for exact matches',
+        'Pluggable generation across Gemini, Groq and OpenAI; embeddings pinned to Gemini',
+        'Ingests PDF, DOCX, PPTX, XLSX and images, with automatic OCR for scanned PDFs',
+        'Live workspace showing retrieval scores, chunks, vector space and Hit@k / MRR evaluation',
+        'Upload your own document as a temporary tenant, queryable immediately',
+      ],
+    },
+  },
   {
     title: 'SafeStep',
     subtitle: 'Real-Time Obstacle Detection',
@@ -91,6 +126,7 @@ const projects: ProjectData[] = [
       { label: 'Accuracy', value: '98%' },
     ],
     github: 'https://github.com/shlokdhanokar/Agentic-AI---KYC-Automation',
+    demo: 'https://agentic-ai-kyc-automation.vercel.app',
     gradient: 'from-violet-500 to-purple-500',
     iconImg: '/logo-kyc.png',
     caseStudy: {
@@ -146,6 +182,26 @@ interface OtherProject {
 }
 
 const otherProjects: OtherProject[] = [
+  {
+    name: 'Veritas — Fact Knowledge Layer',
+    description: 'Extracts grounded facts from PDFs, traceable to the exact page and characters, and judges how they relate across documents: corroborated, contradicted or reconciled by context.',
+    url: 'https://github.com/shlokdhanokar/veritas-fact-knowledge-layer',
+    tech: ['Python', 'FastAPI', 'Gemini'],
+    language: 'Python',
+    langColor: 'bg-yellow-400',
+    gradient: 'from-blue-600 to-indigo-600',
+    icon: '⚖️',
+  },
+  {
+    name: 'VoiceCart — Voice Shopping Assistant',
+    description: 'Voice-controlled shopping list with multilingual NLP (English, Hindi, Spanish, French), smart suggestions, auto-categorisation and voice search with price filters. Zero dependencies.',
+    url: 'https://github.com/shlokdhanokar/voice-shopping-assistant',
+    tech: ['JavaScript', 'NLP', 'Web Speech API'],
+    language: 'JavaScript',
+    langColor: 'bg-yellow-300',
+    gradient: 'from-orange-600 to-amber-600',
+    icon: '🛒',
+  },
   {
     name: 'Agentic Voice Sandbox',
     description: 'A local, voice-controlled AI agent that transcribes audio via Whisper, classifies intents using LLMs, and safely executes sandboxed code or file operations.',
@@ -256,6 +312,36 @@ const otherProjects: OtherProject[] = [
     gradient: 'from-purple-600 to-fuchsia-600',
     icon: '🔍',
   },
+  {
+    name: 'Task Management System',
+    description: 'Flask + MySQL web app where a manager assigns tasks to employees, tracks completion and reviews assignment history from a session-protected dashboard. 20/20 tests passing.',
+    url: 'https://github.com/shlokdhanokar/Task-Management-System',
+    tech: ['Python', 'Flask', 'MySQL'],
+    language: 'Python',
+    langColor: 'bg-yellow-400',
+    gradient: 'from-lime-600 to-green-600',
+    icon: '✅',
+  },
+  {
+    name: 'ApplyMate',
+    description: 'Desktop productivity app for job applications: store links and common answers, tag and search them, and copy instantly with Ctrl+1–9 shortcuts from an always-on-top window.',
+    url: 'https://github.com/shlokdhanokar/ApplyMate',
+    tech: ['Electron', 'JavaScript', 'Node.js'],
+    language: 'JavaScript',
+    langColor: 'bg-yellow-300',
+    gradient: 'from-yellow-600 to-orange-600',
+    icon: '⚡',
+  },
+  {
+    name: 'Iris Species Classification',
+    description: 'Classifies iris flowers into three species from sepal and petal measurements using a scaled Logistic Regression model, with evaluation and visualisation of results.',
+    url: 'https://github.com/shlokdhanokar/Iris-Species-Classification-',
+    tech: ['Python', 'Scikit-learn', 'Matplotlib'],
+    language: 'Python',
+    langColor: 'bg-yellow-400',
+    gradient: 'from-fuchsia-600 to-pink-600',
+    icon: '🌸',
+  },
 ];
 const containerVariants = {
   hidden: {},
@@ -329,6 +415,17 @@ function ProjectModal({
                 <FiGithub size={14} />
                 Source
               </a>
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-primary-600 hover:bg-primary-500 transition-all"
+                >
+                  <FiPlay size={14} />
+                  Live Demo
+                </a>
+              )}
               <button
                 onClick={onClose}
                 className="p-1.5 rounded-lg text-dark-400 hover:text-white hover:bg-white/10 transition-all"
@@ -550,6 +647,18 @@ export default function Projects() {
                         <FiGithub size={15} />
                         Source Code
                       </a>
+
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-primary-500/30 text-sm text-primary-400 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+                        >
+                          <FiPlay size={15} />
+                          Live Demo
+                        </a>
+                      )}
                       
                       {project.caseStudy && (
                         <button
