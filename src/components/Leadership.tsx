@@ -25,6 +25,7 @@ interface CertItem {
   icon: string;
   title: string;
   issuer: string;
+  date: string;
   color: string;
   borderColor: string;
   file: string;
@@ -85,15 +86,6 @@ const achievements: AchievementItem[] = [
     fileType: 'pdf',
   },
   {
-    icon: '⭐',
-    badge: 'Rating Milestone',
-    badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-    title: 'CodeChef 500→1000 Rating',
-    description: 'Doubled competitive programming rating on CodeChef from 500 to 1000+ through consistent problem-solving and algorithmic practice.',
-    file: '/achievements/CODECHEF 500 to 1000 Rating Certificate.pdf',
-    fileType: 'pdf',
-  },
-  {
     icon: '🎓',
     badge: 'VIT Bhopal',
     badgeColor: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
@@ -142,9 +134,60 @@ const achievements: AchievementItem[] = [
 
 const certifications: CertItem[] = [
   {
+    icon: '🤖',
+    title: 'AI/ML Internship',
+    issuer: 'MPOnline Limited',
+    date: 'May – Jul 2026',
+    color: 'from-violet-500/20 to-fuchsia-500/20',
+    borderColor: 'border-violet-500/20',
+    file: '/achievements/MPOnline - AIML.pdf',
+    fileType: 'pdf',
+  },
+  {
+    icon: '🛠️',
+    title: 'Advanced Software Engineering & Development Internship',
+    issuer: 'MPOnline Limited',
+    date: 'May – Jul 2026',
+    color: 'from-sky-500/20 to-indigo-500/20',
+    borderColor: 'border-sky-500/20',
+    file: '/achievements/MPOnline - Advanced Software eng and Dev Internship.pdf',
+    fileType: 'pdf',
+  },
+  {
+    icon: '📡',
+    title: 'Introduction to Internet of Things · Elite (81%)',
+    issuer: 'NPTEL — IIT Kharagpur',
+    date: 'Jan – Apr 2026',
+    color: 'from-blue-500/20 to-indigo-500/20',
+    borderColor: 'border-blue-500/20',
+    file: '/achievements/NPTEL IOT Certificate.pdf',
+    fileType: 'pdf',
+  },
+  {
+    icon: '🌐',
+    title: 'Cloud Computing · Elite (69%)',
+    issuer: 'NPTEL — IIT Kharagpur',
+    date: 'Jan – Apr 2025',
+    color: 'from-indigo-500/20 to-purple-500/20',
+    borderColor: 'border-indigo-500/20',
+    file: '/achievements/NPTEL cloud computing certificate.pdf',
+    fileType: 'pdf',
+  },
+  {
+    icon: '🐍',
+    title: 'Applied Machine Learning in Python',
+    issuer: 'University of Michigan · Coursera',
+    date: 'Dec 2025',
+    color: 'from-blue-500/20 to-cyan-500/20',
+    borderColor: 'border-blue-500/20',
+    file: '/achievements/PYTHON-MACHINE-LEARNING-COURSERA-CERTIFICATE.pdf',
+    fileType: 'pdf',
+  },
+  {
     icon: '☁️',
     title: 'AWS Technical Essentials',
-    issuer: 'Amazon Web Services',
+    issuer: 'AWS Training & Certification',
+    date: 'Dec 2025',
     color: 'from-orange-500/20 to-amber-500/20',
     borderColor: 'border-orange-500/20',
     file: '/achievements/AWS technical essentials Certificate.pdf',
@@ -152,8 +195,9 @@ const certifications: CertItem[] = [
   },
   {
     icon: '☁️',
-    title: 'AWS Cloud Practitioner (Practice)',
-    issuer: 'Amazon Web Services',
+    title: 'AWS Cloud Practitioner (CLF-C02) · Official Practice Question Set',
+    issuer: 'AWS Training & Certification',
+    date: 'Dec 2025',
     color: 'from-orange-500/20 to-amber-500/20',
     borderColor: 'border-orange-500/20',
     file: '/achievements/AWS practice question certificate.pdf',
@@ -161,65 +205,52 @@ const certifications: CertItem[] = [
   },
   {
     icon: '☁️',
-    title: 'AWS Cloud Computing — Intellipaat',
-    issuer: 'Intellipaat',
+    title: 'Free AWS Certification Course',
+    issuer: 'Intellipaat Academy',
+    date: 'Sep 2025',
     color: 'from-orange-400/20 to-yellow-500/20',
     borderColor: 'border-orange-400/20',
     file: '/achievements/AWS Intellipaat certificate.pdf',
     fileType: 'pdf',
   },
   {
-    icon: '🐍',
-    title: 'Python + Machine Learning',
-    issuer: 'Coursera',
-    color: 'from-blue-500/20 to-indigo-500/20',
-    borderColor: 'border-blue-500/20',
-    file: '/achievements/PYTHON-MACHINE-LEARNING-COURSERA-CERTIFICATE.pdf',
-    fileType: 'pdf',
-  },
-  {
-    icon: '☕',
-    title: 'Java Achievement',
-    issuer: 'HackerRank',
-    color: 'from-red-500/20 to-orange-500/20',
-    borderColor: 'border-red-500/20',
-    file: '/achievements/JAVA CERTIFICATE HACKERRANK.pdf',
-    fileType: 'pdf',
-  },
-  {
     icon: '👁️',
     title: 'Computer Vision',
-    issuer: 'Vityarthi',
+    issuer: 'Vityarthi · VIT Bhopal',
+    date: 'Apr 2026',
     color: 'from-cyan-500/20 to-blue-500/20',
     borderColor: 'border-cyan-500/20',
     file: '/achievements/Computer Vision Vityarthi Certificate.png',
     fileType: 'image',
   },
   {
+    icon: '☕',
+    title: 'Java (Basic) · Skill Certification',
+    issuer: 'HackerRank',
+    date: 'Dec 2024',
+    color: 'from-red-500/20 to-orange-500/20',
+    borderColor: 'border-red-500/20',
+    file: '/achievements/JAVA CERTIFICATE HACKERRANK.pdf',
+    fileType: 'pdf',
+  },
+  {
     icon: '🗄️',
-    title: 'Database Management Systems',
-    issuer: 'VIT Bhopal',
+    title: 'Advanced SQL for Technical Interviews · Masterclass',
+    issuer: 'Bosscoder Academy',
+    date: 'Feb 2025',
     color: 'from-teal-500/20 to-green-500/20',
     borderColor: 'border-teal-500/20',
     file: '/achievements/SHLOK DBMS CERTIFICATE.pdf',
     fileType: 'pdf',
   },
   {
-    icon: '🌐',
-    title: 'NPTEL Cloud Computing',
-    issuer: 'NPTEL — IIT',
-    color: 'from-indigo-500/20 to-purple-500/20',
-    borderColor: 'border-indigo-500/20',
-    file: '/achievements/NPTEL cloud computing certificate.pdf',
-    fileType: 'pdf',
-  },
-  {
-    icon: '📡',
-    title: 'NPTEL Internet of Things (IoT)',
-    issuer: 'NPTEL — IIT',
-    color: 'from-blue-500/20 to-indigo-500/20',
-    borderColor: 'border-blue-500/20',
-    file: '/achievements/NPTEL IOT Certificate.pdf',
+    icon: '⭐',
+    title: '500–1000 Difficulty · All Practice Problems',
+    issuer: 'CodeChef',
+    date: 'Apr 2026',
+    color: 'from-amber-500/20 to-yellow-500/20',
+    borderColor: 'border-amber-500/20',
+    file: '/achievements/CODECHEF 500 to 1000 Rating Certificate.pdf',
     fileType: 'pdf',
   },
 ];
@@ -484,6 +515,7 @@ export default function Leadership() {
                     <div>
                       <h3 className="text-white font-semibold text-sm leading-snug mb-1">{cert.title}</h3>
                       <p className="text-dark-400 text-[10px] uppercase tracking-wider">{cert.issuer}</p>
+                      <p className="text-dark-500 text-[10px] mt-1">{cert.date}</p>
                     </div>
                   </div>
                 </div>

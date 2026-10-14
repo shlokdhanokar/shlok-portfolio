@@ -16,6 +16,8 @@ const techLogos: Record<string, string> = {
   CSS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
   JavaScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   Pandas: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
+  'Scikit-learn': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg',
+  TensorFlow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
   'Agentic AI': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
 };
 
@@ -64,6 +66,24 @@ const experiences: ExperienceItem[] = [
     ],
     tech: ['HTML', 'CSS', 'JavaScript', 'SEO', 'CRM'],
     link: { label: 'thecarepal.com', url: 'https://thecarepal.com/' },
+  },
+  {
+    role: 'AI/ML Intern · Advanced Software Engineering & Development Intern',
+    company: 'MPOnline Limited (Govt. of MP & TCS joint venture)',
+    duration: '2 internships',
+    dateRange: 'May 2026 – Jul 2026',
+    type: 'Internship',
+    points: [
+      'Completed two internship tracks in parallel: AI/ML, and Advanced Software Engineering & Development',
+      'Built 10 machine learning projects: regression, logistic regression, KNN, SVM, decision trees and random forests, K-Means with PCA, an ANN and a CNN',
+      'Deployed a heart-disease prediction model as a Flask REST API on Render — 78.69% accuracy, 0.89 ROC-AUC, 19/19 API tests passing',
+    ],
+    tech: ['Python', 'Scikit-learn', 'TensorFlow', 'Pandas', 'Flask'],
+    metrics: [
+      { value: '10', label: 'ML Projects' },
+      { value: '78.7%', label: 'Model Accuracy' },
+      { value: '19/19', label: 'API Tests Pass' },
+    ],
   },
   {
     role: 'PHP Web Developer Intern',
@@ -157,7 +177,7 @@ export default function Experience() {
             Where I've <span className="gradient-text">Worked</span>
           </h2>
           <p className="section-subtitle mx-auto mt-4">
-            Six internships across GenAI, RAG, backend engineering and full-stack web development
+            Eight internships across GenAI, RAG, machine learning, backend engineering and full-stack web development
           </p>
         </motion.div>
 
